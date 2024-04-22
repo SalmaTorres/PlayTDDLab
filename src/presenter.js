@@ -1,15 +1,15 @@
-import sumar from "./sumador";
+import {DevolverTitulo, DevolverDescripcion} from "./PlayTDD.js";
 
-const first = document.querySelector("#primer-numero");
-const second = document.querySelector("#segundo-numero");
-const form = document.querySelector("#sumar-form");
-const div = document.querySelector("#resultado-div");
+const titulo = document.querySelector("#titulo-proyecto");
+const descripcion = document.querySelector("#descripcion-proyecto");
+const formCrear = document.querySelector("#crear-form");
+const divProyectos = document.querySelector("#Lista-proyectos");
 
-form.addEventListener("submit", (event) => {
+formCrear.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
+  const tituloV = titulo.value;
+  const descripcionV = descripcion.value;
 
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
+  divProyectos.innerHTML = "<p>" + DevolverTitulo(tituloV) +" : "+ DevolverDescripcion(descripcionV) + "</p>";
 });
