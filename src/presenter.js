@@ -11,5 +11,10 @@ formCrear.addEventListener("submit", (event) => {
   const tituloV = titulo.value;
   const descripcionV = descripcion.value;
 
-  divProyectos.innerHTML = "<p>" + DevolverTitulo(tituloV) +" : "+ DevolverDescripcion(descripcionV) + "</p>";
+  const nuevoProyecto = document.createElement("p");
+  nuevoProyecto.textContent = DevolverTitulo(tituloV) + " : " + DevolverDescripcion(descripcionV);
+  divProyectos.appendChild(nuevoProyecto);
+
+  titulo.value = "";
+  descripcion.value = "";
 });
