@@ -10,11 +10,15 @@ function DevolverDescripcion(descripcion){
 }
 
 function AumentarCont(){
-  return contador=contador+1
+  contador=contador+1
+  console.log("Valor del contador:", contador)
+  return contador
 }
 
 function DisminuirCont(){
-  return contador=contador-1
+  contador=contador-1
+  console.log("Valor del contador:", contador)
+  return contador
 }
 
 export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont};
