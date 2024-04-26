@@ -14,40 +14,42 @@ function eliminarProyecto(event) {
 var metricas = [];
 
 function mostrarFormulario() {
-  var formulario = document.createElement("div");
-  formulario.id = "formulario";
-  formulario.innerHTML = `
+  const form_metricas = document.createElement("div");
+  form_metricas.id = "formulario";
+  form_metricas.innerHTML = `
     <form id="metricasForm">
-      <label for="commit">Número de Commit:</label>
-      <input type="text" id="commit" name="commit"><br><br>
-      <label for="pruebas">Cantidad de Pruebas:</label>
-      <input type="text" id="pruebas" name="pruebas"><br><br>
-      <label for="lineas">Cantidad de Líneas:</label>
-      <input type="text" id="lineas" name="lineas"><br><br>
-      <label for="cobertura">Porcentaje de Cobertura:</label>
-      <input type="text" id="cobertura" name="cobertura"><br><br>
-      <button type="button" id="agregarBtn">Agregar</button>
+      <label for="nro_commit">Número de Commit:</label>
+      <input type="number" id="nro_commit" name="nro_commit"><br><br>
+      <label for="cant_pruebas">Cantidad de Pruebas:</label>
+      <input type="number" id="cant_pruebas" name="cant_pruebas"><br><br>
+      <label for="cant_lineas">Cantidad de Líneas:</label>
+      <input type="number" id="cant_lineas" name="cant_lineas"><br><br>
+      <label for="porc_cobertura">Porcentaje de Cobertura:</label>
+      <input type="number" id="porc_cobertura" name="porc_cobertura"><br><br>
+      <button type="button" id="agregarMetrica">Agregar</button>
     </form>
   `;
-  document.body.appendChild(formulario);
-  document.getElementById("agregarBtn").addEventListener("click", function() {
-    var commit = document.getElementById("commit").value;
-    var pruebas = document.getElementById("pruebas").value;
-    var lineas = document.getElementById("lineas").value;
-    var cobertura = document.getElementById("cobertura").value;
-    metricas = AnadirMetricas(metricas, commit, pruebas, lineas, cobertura);
-    actualizarTabla();
-  });
+  document.body.appendChild(form_metricas);
+  document.getElementById("agregarMetrica").addEventListener("click", agregarMetrica); 
+}
+
+function agregarMetrica() {
+  const vCommit = document.getElementById("nro_commit").value;
+  const vPruebas = document.getElementById("cant_pruebas").value;
+  const vLineas = document.getElementById("cant_lineas").value;
+  const vCobertura = document.getElementById("porc_cobertura").value;
+  metricas = AnadirMetricas(metricas, vCommit, vPruebas, vLineas, vCobertura);
   var tabla = document.createElement("div");
   tabla.id = "tabla";
   document.body.appendChild(tabla);
+  actualizarTabla();
 }
  
 function actualizarTabla() {
   var tabla = document.getElementById("tabla");
   if (!tabla.querySelector("table")) {
     tabla.innerHTML = `
-      <table id="metricasTabla">
+      <table id="tablaMetricas">
         <tr>
           <th>Número de Commit</th>
           <th>Cantidad de Pruebas</th>
@@ -56,13 +58,12 @@ function actualizarTabla() {
         </tr>
       </table>`;
   }
-
-  tabla = document.getElementById("metricasTabla");
-  var index = metricas.length - 1;
-  var newRow = tabla.insertRow();
-  for (var i = 0; i < metricas[index].length; i++) {
-    var cell = newRow.insertCell(i);
-    cell.innerHTML = metricas[index][i];
+  tabla = document.getElementById("tablaMetricas");
+  const pos_ultimaMetrica = metricas.length - 1;
+  var pos_nuevaFila = tabla.insertRow();
+  for (var i = 0; i < metricas[pos_ultimaMetrica].length; i++) {
+    var pos_nuevaCelda = pos_nuevaFila.insertCell(i);
+    pos_nuevaCelda.innerHTML = metricas[pos_ultimaMetrica][i];
   }
 }
 
@@ -82,11 +83,10 @@ formCrear.addEventListener("submit", (event) => {
 
   const botonMetricas = document.createElement("button");
   botonMetricas.textContent = "Ir a métricas";
-  botonMetricas.addEventListener("click", mostrarFormulario());
+  botonMetricas.addEventListener("click", mostrarFormulario);
   nuevoProyecto.appendChild(botonMetricas);
 
   divProyectos.appendChild(nuevoProyecto);
-
 
   titulo.value = "";
   descripcion.value = "";
