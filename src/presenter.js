@@ -24,8 +24,19 @@ formCrear.addEventListener("submit", (event) => {
   botonEliminar.textContent = "Eliminar";
   botonEliminar.addEventListener("click", eliminarProyecto);
   nuevoProyecto.appendChild(botonEliminar);
+
+  const botonMetricas = document.createElement("button");
+  botonMetricas.textContent = "Ir a métricas";
+  botonMetricas.addEventListener("click", irAMetricas);
+  nuevoProyecto.appendChild(botonMetricas);
+
   divProyectos.appendChild(nuevoProyecto);
+
 
   titulo.value = "";
   descripcion.value = "";
 });
+
+function irAMetricas() {
+  window.location.href = "metricas.html";
+}
