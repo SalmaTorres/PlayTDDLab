@@ -21,4 +21,9 @@ function DisminuirCont(){
   return contador
 }
 
-export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont};
+function AnadirMetricas(metricas, nro_commit, cant_pruebas, cant_lineas, porc_cobertura){
+  metricas.push([nro_commit, cant_pruebas, cant_lineas, porc_cobertura]);
+  return metricas;
+}
+
+export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas};
