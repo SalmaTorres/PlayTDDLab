@@ -66,12 +66,14 @@ function actualizarTabla() {
     tabla.deleteRow(1);
   }
 
+  
   metricas.forEach((metrica, index) => {
     var fila = tabla.insertRow();
     metrica.forEach((dato) => {
       var celda = fila.insertCell();
       celda.textContent = dato;
     });
+
     var celdaAcciones = fila.insertCell();
     var botonEliminar = document.createElement("button");
     botonEliminar.textContent = "Eliminar";
