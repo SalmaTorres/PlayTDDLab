@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica} from "./PlayTDD.js";
 
 const titulo = document.querySelector("#titulo-proyecto");
 const descripcion = document.querySelector("#descripcion-proyecto");
@@ -39,33 +39,52 @@ function agregarMetrica() {
   const vLineas = document.getElementById("cant_lineas").value;
   const vCobertura = document.getElementById("porc_cobertura").value;
   metricas = AnadirMetricas(metricas, vCommit, vPruebas, vLineas, vCobertura);
-  var tabla = document.createElement("div");
-  tabla.id = "tabla";
-  document.body.appendChild(tabla);
-  actualizarTabla();
+  actualizarTabla(); 
 }
  
-function actualizarTabla() {
-  var tabla = document.getElementById("tabla");
-  if (!tabla.querySelector("table")) {
-    tabla.innerHTML = `
-      <table id="tablaMetricas">
-        <tr>
-          <th>Número de Commit</th>
-          <th>Cantidad de Pruebas</th>
-          <th>Cantidad de Líneas</th>
-          <th>Porcentaje de Cobertura</th>
-        </tr>
-      </table>`;
-  }
-  tabla = document.getElementById("tablaMetricas");
-  const pos_ultimaMetrica = metricas.length - 1;
-  var pos_nuevaFila = tabla.insertRow();
-  for (var i = 0; i < metricas[pos_ultimaMetrica].length; i++) {
-    var pos_nuevaCelda = pos_nuevaFila.insertCell(i);
-    pos_nuevaCelda.innerHTML = metricas[pos_ultimaMetrica][i];
-  }
+function borrarMetrica(index) {
+  metricas = eliminarMetrica(metricas, index);
 }
+
+function actualizarTabla() {
+  var tabla = document.getElementById("tablaMetricas");
+  if (!tabla) {
+    tabla = document.createElement("table");
+    tabla.id = "tablaMetricas";
+    tabla.innerHTML = `
+      <tr>
+        <th>Número de Commit</th>
+        <th>Cantidad de Pruebas</th>
+        <th>Cantidad de Líneas</th>
+        <th>Porcentaje de Cobertura</th>
+        <th>Acciones</th>
+      </tr>`;
+    document.body.appendChild(tabla);
+  }
+
+  while (tabla.rows.length > 1) {
+    tabla.deleteRow(1);
+  }
+
+  metricas.forEach((metrica, index) => {
+    var fila = tabla.insertRow();
+    metrica.forEach((dato) => {
+      var celda = fila.insertCell();
+      celda.textContent = dato;
+    });
+    var celdaAcciones = fila.insertCell();
+    var botonEliminar = document.createElement("button");
+    botonEliminar.textContent = "Eliminar";
+    botonEliminar.addEventListener("click", () => {
+      borrarMetrica(index);
+      actualizarTabla();
+    });
+    celdaAcciones.appendChild(botonEliminar);
+  });
+}
+
+
+
 
 formCrear.addEventListener("submit", (event) => {
   event.preventDefault();

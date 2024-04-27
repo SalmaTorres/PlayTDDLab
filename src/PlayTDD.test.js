@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica} from "./PlayTDD.js";
 
 describe("PlayTDD", () => {
   let metricas;
@@ -30,4 +30,17 @@ describe("PlayTDD", () => {
     AnadirMetricas(metricas, 2, 20, 200, 80);
     expect(metricas).toEqual([[1, 10, 100, 90], [2, 20, 200, 80]]);
   });
+
+  it("Debería eliminar una métrica", () => {
+    metricas.push([1, 10, 100, 90]);
+    metricas.push([2, 20, 200, 0]);
+    expect(metricas.length).toEqual(2);
+
+    eliminarMetrica(metricas, 0);
+
+    expect(metricas.length).toEqual(1);
+    expect(metricas).toEqual([[2, 20, 200, 0]]); 
+});
+  
+
 });

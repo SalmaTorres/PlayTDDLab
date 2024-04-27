@@ -26,4 +26,9 @@ function AnadirMetricas(metricas, nro_commit, cant_pruebas, cant_lineas, porc_co
   return metricas;
 }
 
-export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas};
+function eliminarMetrica(metricas, index) {
+  metricas.splice(index, 1);
+  return metricas;
+}
+
+export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica};
