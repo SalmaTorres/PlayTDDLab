@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura} from "./PlayTDD.js";
 
 const titulo = document.querySelector("#titulo-proyecto");
 const descripcion = document.querySelector("#descripcion-proyecto");
@@ -8,6 +8,7 @@ const divProyectos = document.querySelector("#Lista-proyectos");
 let puntajeTotal = 0;
 let puntajesPruebas = [];
 let puntajesLineas = [];
+let puntajesCobertura = []
 
 function eliminarProyecto(event) {
   const proyectoAEliminar = event.target.parentNode;
@@ -46,19 +47,22 @@ function agregarMetrica() {
 
   const puntajePruebas = obtenerPuntajePruebas(vPruebas);
   const puntajeLineas = obtenerPuntajeLineas(vLineas);
+  const puntajeCobertura = obtenerPuntajeCobertura(vCobertura);
   
 
   puntajesPruebas.push(puntajePruebas);
   puntajesLineas.push(puntajeLineas)
-  puntajeTotal += puntajePruebas + puntajeLineas;
+  puntajesCobertura.push(puntajeCobertura)
+  puntajeTotal += puntajePruebas + puntajeLineas + puntajeCobertura;
 
   actualizarTabla(); 
 }
  
 function borrarMetrica(index) {
-  puntajeTotal = puntajeTotal - puntajesPruebas[index] - puntajesLineas[index];
+  puntajeTotal = puntajeTotal - puntajesPruebas[index] - puntajesLineas[index] - puntajesCobertura[index];
   puntajesPruebas.splice(index, 1);
   puntajesLineas.splice(index, 1);
+  puntajesCobertura.splice(index, 1);
 
   metricas = eliminarMetrica(metricas, index);
 }

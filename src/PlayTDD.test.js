@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura} from "./PlayTDD.js";
 
 describe("PlayTDD", () => {
   let metricas;
@@ -59,12 +59,24 @@ it("Debería asignar un puntaje de 10 para una cantidad de <10 lineas modificada
   expect(obtenerPuntajeLineas(7)).toEqual(10); 
 });
 
-it("Debería asignar un puntaje de 5 para una cantidad de >10 y <20 lineas modificadas", () => {
+it("Debería asignar un puntaje de 5 para una cantidad de >=10 y <20 lineas modificadas", () => {
   expect(obtenerPuntajeLineas(14)).toEqual(5);
 });
 
 it("Debería asignar un puntaje de 0 para una cantidad de >20 lineas modificadas", () => {
   expect(obtenerPuntajeLineas(21)).toEqual(0);
+});
+
+it("Debería asignar un puntaje de 10 para una cobertura >=80%", () => {
+  expect(obtenerPuntajeCobertura(81)).toEqual(10); 
+});
+
+it("Debería asignar un puntaje de 5 para una cobertura >=50% y <80%", () => {
+  expect(obtenerPuntajeCobertura(63)).toEqual(5);
+});
+
+it("ebería asignar un puntaje de 0 para una cobertura <50%", () => {
+  expect(obtenerPuntajeCobertura(32)).toEqual(0);
 });
 
 });

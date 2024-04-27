@@ -48,4 +48,14 @@ function obtenerPuntajeLineas(cantidadLineasModificadas) {
   }
 }
 
-export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas};
+function obtenerPuntajeCobertura(porcentajeCobertura) {
+  if (porcentajeCobertura >= 80) {
+    return 10;
+  } else if (porcentajeCobertura >= 50 && porcentajeCobertura < 80) {
+    return 5;
+  } else {
+    return 0; 
+  }
+}
+
+export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura};
