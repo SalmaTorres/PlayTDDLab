@@ -31,4 +31,11 @@ function eliminarMetrica(metricas, index) {
   return metricas;
 }
 
-export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica};
+function obtenerPuntajePruebas(cantidadPruebasPasadas) {
+  if (cantidadPruebasPasadas === 0) {
+    return 0;
+  }
+  return cantidadPruebasPasadas;
+}
+
+export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas};

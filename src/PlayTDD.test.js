@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas} from "./PlayTDD.js";
 
 describe("PlayTDD", () => {
   let metricas;
@@ -40,6 +40,18 @@ describe("PlayTDD", () => {
 
     expect(metricas.length).toEqual(1);
     expect(metricas).toEqual([[2, 20, 200, 0]]); 
+});
+
+it("Debería asignar un puntaje de 0 para una cantidad de 0 pruebas pasadas", () => {
+  expect(obtenerPuntajePruebas(0)).toEqual(0); 
+});
+
+it("Debería asignar un puntaje de 0 para una cantidad de 1 pruebas pasadas", () => {
+  expect(obtenerPuntajePruebas(1)).toEqual(1);
+});
+
+it("Debería asignar un puntaje de 0 para una cantidad de 2 pruebas pasadas", () => {
+  expect(obtenerPuntajePruebas(2)).toEqual(2);
 });
   
 
