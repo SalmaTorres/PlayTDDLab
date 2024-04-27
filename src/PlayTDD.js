@@ -38,4 +38,14 @@ function obtenerPuntajePruebas(cantidadPruebasPasadas) {
   return cantidadPruebasPasadas;
 }
 
-export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas};
+function obtenerPuntajeLineas(cantidadLineasModificadas) {
+  if (cantidadLineasModificadas < 10) {
+    return 10;
+  } else if (cantidadLineasModificadas >= 10 && cantidadLineasModificadas < 20) {
+    return 5;
+  } else {
+    return 0;
+  }
+}
+
+export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas};

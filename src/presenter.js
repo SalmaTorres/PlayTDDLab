@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas} from "./PlayTDD.js";
 
 const titulo = document.querySelector("#titulo-proyecto");
 const descripcion = document.querySelector("#descripcion-proyecto");
@@ -7,6 +7,7 @@ const divProyectos = document.querySelector("#Lista-proyectos");
 
 let puntajeTotal = 0;
 let puntajesPruebas = [];
+let puntajesLineas = [];
 
 function eliminarProyecto(event) {
   const proyectoAEliminar = event.target.parentNode;
@@ -39,20 +40,25 @@ function mostrarFormulario() {
 function agregarMetrica() {
   const vCommit = document.getElementById("nro_commit").value;
   const vPruebas = parseInt(document.getElementById("cant_pruebas").value);
-  const vLineas = document.getElementById("cant_lineas").value;
+  const vLineas = parseInt(document.getElementById("cant_lineas").value);
   const vCobertura = document.getElementById("porc_cobertura").value;
   metricas = AnadirMetricas(metricas, vCommit, vPruebas, vLineas, vCobertura);
 
   const puntajePruebas = obtenerPuntajePruebas(vPruebas);
+  const puntajeLineas = obtenerPuntajeLineas(vLineas);
+  
+
   puntajesPruebas.push(puntajePruebas);
-  puntajeTotal += puntajePruebas;
+  puntajesLineas.push(puntajeLineas)
+  puntajeTotal += puntajePruebas + puntajeLineas;
 
   actualizarTabla(); 
 }
  
 function borrarMetrica(index) {
-  puntajeTotal -= puntajesPruebas[index];
+  puntajeTotal = puntajeTotal - puntajesPruebas[index] - puntajesLineas[index];
   puntajesPruebas.splice(index, 1);
+  puntajesLineas.splice(index, 1);
 
   metricas = eliminarMetrica(metricas, index);
 }
