@@ -59,7 +59,7 @@ function obtenerPuntajeCobertura(porcentajeCobertura) {
 }
 
 function obtenerPuntajePorCommit(puntajePruebas,puntajeLineas,puntajeCobertura){
-  return 0
+  return puntajePruebas + puntajeLineas + puntajeCobertura
 } 
 
 export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit};
