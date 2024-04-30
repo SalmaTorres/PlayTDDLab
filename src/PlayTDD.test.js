@@ -114,4 +114,8 @@ it("Debería devolver el 2do mensaje de recomendacion si el puntaje es menor a 2
 it("Debería devolver el 3er mensaje de recomendacion si el puntaje es igual a 10", () => {
   expect(DevolverRecomendacionPorCommit(10)).toEqual("Tu uso de TDD podría mejorar. Es importante escribir pruebas más exhaustivas y pensar más cuidadosamente en los casos de prueba para garantizar una mayor confiabilidad en el código.");
 });
+
+it("Debería devolver el 3er mensaje de recomendacion si el puntaje es menor a 10 y mayor o igual que 0", () => {
+  expect(DevolverRecomendacionPorCommit(5)).toEqual("Tu uso de TDD podría mejorar. Es importante escribir pruebas más exhaustivas y pensar más cuidadosamente en los casos de prueba para garantizar una mayor confiabilidad en el código.");
+});
 });
