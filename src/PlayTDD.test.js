@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit} from "./PlayTDD.js";
 
 describe("PlayTDD", () => {
   let metricas;
@@ -77,6 +77,10 @@ it("Debería asignar un puntaje de 5 para una cobertura >=50% y <80%", () => {
 
 it("ebería asignar un puntaje de 0 para una cobertura <50%", () => {
   expect(obtenerPuntajeCobertura(32)).toEqual(0);
+});
+
+it("Debería asignar un puntaje de 0 para el puntaje por Commit", () => {
+  expect(obtenerPuntajePorCommit(0,0,0)).toEqual(0);
 });
 
 });

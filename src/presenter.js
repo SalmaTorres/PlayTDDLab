@@ -78,6 +78,8 @@ function actualizarTabla() {
         <th>Cantidad de Pruebas</th>
         <th>Cantidad de Líneas</th>
         <th>Porcentaje de Cobertura</th>
+        <th>Puntaje por Commit</th>
+        <th>Recomendación por Commit</th>
         <th>Acciones</th>
       </tr>`;
     document.body.appendChild(tabla);
@@ -86,7 +88,6 @@ function actualizarTabla() {
   while (tabla.rows.length > 1) {
     tabla.deleteRow(1);
   }
-
   
   metricas.forEach((metrica, index) => {
     var fila = tabla.insertRow();
@@ -94,6 +95,12 @@ function actualizarTabla() {
       var celda = fila.insertCell();
       celda.textContent = dato;
     });
+
+  var celdaPuntaje = fila.insertCell();
+  //celdaPuntaje.textContent = puntajePorCommit;
+
+  var celdaRecomendacion = fila.insertCell();
+  //celdaRecomendacion.textContent = recomendacion;
 
     var celdaAcciones = fila.insertCell();
     var botonEliminar = document.createElement("button");
@@ -108,9 +115,6 @@ function actualizarTabla() {
   console.log("Puntaje Total: " + puntajeTotal);
 
 }
-
-
-
 
 formCrear.addEventListener("submit", (event) => {
   event.preventDefault();
