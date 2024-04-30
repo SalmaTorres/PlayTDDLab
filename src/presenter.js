@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit} from "./PlayTDD.js";
 
 const titulo = document.querySelector("#titulo-proyecto");
 const descripcion = document.querySelector("#descripcion-proyecto");
@@ -101,10 +101,11 @@ function actualizarTabla() {
     });
 
   var celdaPuntaje = fila.insertCell();
-  celdaPuntaje.textContent = obtenerPuntajeCommit(index);
+  puntajeCommit = obtenerPuntajeCommit(index);
+  celdaPuntaje.textContent = puntajeCommit;
 
   var celdaRecomendacion = fila.insertCell();
-  //celdaRecomendacion.textContent = recomendacion;
+  celdaRecomendacion.textContent = DevolverRecomendacionPorCommit(puntajeCommit);
 
     var celdaAcciones = fila.insertCell();
     var botonEliminar = document.createElement("button");
