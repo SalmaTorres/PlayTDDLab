@@ -95,11 +95,15 @@ it("Debería devolver la palabra recomendacion solamente", () => {
   expect(DevolverRecomendacionPorCommit(0)).toEqual("recomendacion");
 });
 
-it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es >=21", () => {
+it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es igual a 21", () => {
   expect(DevolverRecomendacionPorCommit(21)).toEqual("Tus prácticas de TDD son sólidas y consistentes. Demuestras un dominio sólido de las mejores prácticas y una comprensión profunda de cómo aplicarlas efectivamente en tu desarrollo.");
 });
 
-it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es >=21", () => {
+it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es mayor a 21", () => {
   expect(DevolverRecomendacionPorCommit(23)).toEqual("Tus prácticas de TDD son sólidas y consistentes. Demuestras un dominio sólido de las mejores prácticas y una comprensión profunda de cómo aplicarlas efectivamente en tu desarrollo.");
+});
+
+it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es igual a 20", () => {
+  expect(DevolverRecomendacionPorCommit(20)).toEqual("Tu práctica de TDD muestra un buen nivel de compromiso, pero aún hay margen para mejorar. Considera escribir pruebas más específicas y detalladas para abordar casos límite y asegurar una cobertura más completa.");
 });
 });

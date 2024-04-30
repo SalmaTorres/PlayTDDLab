@@ -66,6 +66,8 @@ function DevolverRecomendacionPorCommit(puntajeCommit){
   let recomendacion = "recomendacion"
   if (puntajeCommit>=21){
     recomendacion = "Tus prácticas de TDD son sólidas y consistentes. Demuestras un dominio sólido de las mejores prácticas y una comprensión profunda de cómo aplicarlas efectivamente en tu desarrollo."
+  }else if (puntajeCommit<=20 && puntajeCommit>10){
+    recomendacion = "Tu práctica de TDD muestra un buen nivel de compromiso, pero aún hay margen para mejorar. Considera escribir pruebas más específicas y detalladas para abordar casos límite y asegurar una cobertura más completa."
   }
   return recomendacion
 }
