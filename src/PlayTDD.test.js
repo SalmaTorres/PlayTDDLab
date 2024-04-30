@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit} from "./PlayTDD.js";
 
 describe("PlayTDD", () => {
   let metricas;
@@ -89,6 +89,10 @@ it("Debería asignar un puntaje de 0 sumando los puntajes para el puntaje por Co
 
 it("Debería asignar un puntaje igual a la suma de los puntajes para el puntaje por Commit", () => {
   expect(obtenerPuntajePorCommit(5,6,7)).toEqual(18);
+});
+
+it("Debería devolver la palabra recomendacion solamente", () => {
+  expect(DevolverRecomendacionPorCommit(0)).toEqual("recomendacion");
 });
 
 });
