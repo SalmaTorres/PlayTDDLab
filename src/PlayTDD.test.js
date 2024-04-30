@@ -87,4 +87,8 @@ it("Debería asignar un puntaje de 0 sumando los puntajes para el puntaje por Co
   expect(obtenerPuntajePorCommit(0,0,0)).toEqual(0);
 });
 
+it("Debería asignar un puntaje igual a la suma de los puntajes para el puntaje por Commit", () => {
+  expect(obtenerPuntajePorCommit(5,6,7)).toEqual(18);
+});
+
 });
