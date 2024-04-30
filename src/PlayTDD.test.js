@@ -99,4 +99,7 @@ it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es >=21", (
   expect(DevolverRecomendacionPorCommit(21)).toEqual("Tus prácticas de TDD son sólidas y consistentes. Demuestras un dominio sólido de las mejores prácticas y una comprensión profunda de cómo aplicarlas efectivamente en tu desarrollo.");
 });
 
+it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es >=21", () => {
+  expect(DevolverRecomendacionPorCommit(23)).toEqual("Tus prácticas de TDD son sólidas y consistentes. Demuestras un dominio sólido de las mejores prácticas y una comprensión profunda de cómo aplicarlas efectivamente en tu desarrollo.");
+});
 });
