@@ -106,4 +106,8 @@ it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es mayor a 
 it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es igual a 20", () => {
   expect(DevolverRecomendacionPorCommit(20)).toEqual("Tu práctica de TDD muestra un buen nivel de compromiso, pero aún hay margen para mejorar. Considera escribir pruebas más específicas y detalladas para abordar casos límite y asegurar una cobertura más completa.");
 });
+
+it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es menor a 20 y mayor a 10", () => {
+  expect(DevolverRecomendacionPorCommit(15)).toEqual("Tu práctica de TDD muestra un buen nivel de compromiso, pero aún hay margen para mejorar. Considera escribir pruebas más específicas y detalladas para abordar casos límite y asegurar una cobertura más completa.");
+});
 });
