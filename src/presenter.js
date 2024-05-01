@@ -5,6 +5,7 @@ const descripcion = document.querySelector("#descripcion-proyecto");
 const formCrear = document.querySelector("#crear-form");
 const divProyectos = document.querySelector("#Lista-proyectos");
 
+let cantidadCommits=0;
 let puntajeTotal = 0;
 let puntajesPruebas = [];
 let puntajesLineas = [];
@@ -14,6 +15,9 @@ function eliminarProyecto(event) {
   const proyectoAEliminar = event.target.parentNode;
   proyectoAEliminar.remove();
   DisminuirCont();
+
+  cantidadCommits--;
+  actualizarCantidadCommits();
 }
 
 var metricas = [];
@@ -44,7 +48,8 @@ function agregarMetrica() {
   const vLineas = parseInt(document.getElementById("cant_lineas").value);
   const vCobertura = document.getElementById("porc_cobertura").value;
   metricas = AnadirMetricas(metricas, vCommit, vPruebas, vLineas, vCobertura);
-
+  cantidadCommits++;
+  console.log(cantidadCommits);
   const puntajePruebas = obtenerPuntajePruebas(vPruebas);
   const puntajeLineas = obtenerPuntajeLineas(vLineas);
   const puntajeCobertura = obtenerPuntajeCobertura(vCobertura);
@@ -65,11 +70,14 @@ function borrarMetrica(index) {
   puntajesCobertura.splice(index, 1);
 
   metricas = eliminarMetrica(metricas, index);
+  cantidadCommits--;
+  console.log(cantidadCommits);
 }
 
 function obtenerPuntajeCommit(index) {
   return obtenerPuntajePorCommit(puntajesPruebas[index], puntajesLineas[index], puntajesCobertura[index])
 }
+
 
 function actualizarTabla() {
   var tabla = document.getElementById("tablaMetricas");
@@ -101,7 +109,7 @@ function actualizarTabla() {
     });
 
   var celdaPuntaje = fila.insertCell();
-  puntajeCommit = obtenerPuntajeCommit(index);
+  var puntajeCommit = obtenerPuntajeCommit(index);
   celdaPuntaje.textContent = puntajeCommit;
 
   var celdaRecomendacion = fila.insertCell();
@@ -123,10 +131,10 @@ function actualizarTabla() {
     puntajeTotalParrafo.id = "puntajeTotalParrafo";
     document.body.appendChild(puntajeTotalParrafo);
   }
-  puntajeTotalParrafo.textContent = "El puntaje total del proyecto es: " + puntajeTotal;
+ puntajeTotalParrafo.textContent = "El puntaje total del proyecto es: " + puntajeTotal;
 
   console.log("Puntaje Total: " + puntajeTotal);
-
+  
 }
 
 formCrear.addEventListener("submit", (event) => {

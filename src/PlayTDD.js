@@ -75,7 +75,7 @@ function DevolverRecomendacionPorCommit(puntajeCommit){
   return recomendacion
 }
 function DevolverRecomendacionFinal(puntajeCommit){
-  let recomendacion = "recomendacionFinal"
+  let recomendacion = "recomendacionFinal";
   return recomendacion
 }
 

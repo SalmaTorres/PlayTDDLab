@@ -121,4 +121,5 @@ it("Debería devolver el 3er mensaje de recomendacion si el puntaje es menor a 1
 it("Debería devolver el mensaje de recomendacion final solamente", () => {
   expect(DevolverRecomendacionFinal(-1)).toEqual("recomendacionFinal");
 });
+
 });
