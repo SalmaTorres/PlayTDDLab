@@ -74,5 +74,9 @@ function DevolverRecomendacionPorCommit(puntajeCommit){
   }
   return recomendacion
 }
+function DevolverRecomendacionFinal(puntajeCommit){
+  let recomendacion = "recomendacionFinal"
+  return recomendacion
+}
 
-export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit};
+export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal};
