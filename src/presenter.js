@@ -54,8 +54,8 @@ function agregarMetrica() {
   puntajesLineas.push(puntajeLineas)
   puntajesCobertura.push(puntajeCobertura)
   puntajeTotal += puntajePruebas + puntajeLineas + puntajeCobertura;
-
   actualizarTabla(); 
+ 
 }
  
 function borrarMetrica(index) {
@@ -114,8 +114,16 @@ function actualizarTabla() {
       borrarMetrica(index);
       actualizarTabla();
     });
+    
     celdaAcciones.appendChild(botonEliminar);
   });
+  var puntajeTotalParrafo = document.getElementById("puntajeTotalParrafo");
+  if (!puntajeTotalParrafo) {
+    puntajeTotalParrafo = document.createElement("p");
+    puntajeTotalParrafo.id = "puntajeTotalParrafo";
+    document.body.appendChild(puntajeTotalParrafo);
+  }
+  puntajeTotalParrafo.textContent = "El puntaje total del proyecto es: " + puntajeTotal;
 
   console.log("Puntaje Total: " + puntajeTotal);
 
@@ -144,4 +152,5 @@ formCrear.addEventListener("submit", (event) => {
 
   titulo.value = "";
   descripcion.value = "";
+  
 });
