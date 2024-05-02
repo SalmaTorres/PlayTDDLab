@@ -138,4 +138,8 @@ it("Debería devolver True si el nombre del proyecto es igual", () => {
 it("Debería devolver True verificando si el nombre del proyecto es igual", () => {
   expect(VerificarSiElNombreDelProyectoEsIgualA("Proyecto1","Proyecto1")).toEqual(true);
 });
+
+it("Debería devolver False verificando si los nombres de los proyectos son distintos", () => {
+  expect(VerificarSiElNombreDelProyectoEsIgualA("Proyecto3","Proyecto1")).toEqual(false);
+});
 });
