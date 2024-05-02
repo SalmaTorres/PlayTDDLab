@@ -74,9 +74,14 @@ function DevolverRecomendacionPorCommit(puntajeCommit){
   }
   return recomendacion
 }
-function DevolverRecomendacionFinal(puntajeCommit){
+function DevolverRecomendacionFinal(puntajeTotal,cantidadCommits){
   let recomendacion = "recomendacionFinal";
-  return recomendacion
+  let porcentaje=(puntajeTotal/cantidadCommits*21)*100;
+  if(porcentaje>=80)
+  {
+    recomendacion="En general apicaste TDD de manera adecuada, felicidades. Las pruebas estan en verde, modificaste pocas lineas de codigo por commit y el porcentaje de cobertura es elevado"
+  }
+  return recomendacion;
 }
 
 export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal};

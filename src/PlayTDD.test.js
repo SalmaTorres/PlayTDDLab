@@ -121,5 +121,7 @@ it("Debería devolver el 3er mensaje de recomendacion si el puntaje es menor a 1
 it("Debería devolver el mensaje de recomendacion final solamente", () => {
   expect(DevolverRecomendacionFinal(-1)).toEqual("recomendacionFinal");
 });
-
+it("Debería devolver el mensaje de recomendacion final si tuvo al menos un 80% de buena practica de TDD en todo el proyecto", () => {
+  expect(DevolverRecomendacionFinal(58,3)).toEqual("En general apicaste TDD de manera adecuada, felicidades. Las pruebas estan en verde, modificaste pocas lineas de codigo por commit y el porcentaje de cobertura es elevado");
+});
 });

@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal} from "./PlayTDD.js";
 
 const titulo = document.querySelector("#titulo-proyecto");
 const descripcion = document.querySelector("#descripcion-proyecto");
@@ -17,7 +17,7 @@ function eliminarProyecto(event) {
   DisminuirCont();
 
   cantidadCommits--;
-  actualizarCantidadCommits();
+  
 }
 
 var metricas = [];
@@ -132,9 +132,12 @@ function actualizarTabla() {
     document.body.appendChild(puntajeTotalParrafo);
   }
  puntajeTotalParrafo.textContent = "El puntaje total del proyecto es: " + puntajeTotal;
-
-  console.log("Puntaje Total: " + puntajeTotal);
   
+  let recomendacionFinal = DevolverRecomendacionFinal(puntajeTotal, cantidadCommits);
+  var mensajeRecomendacion = document.createElement("p");
+  mensajeRecomendacion.textContent = "Recomendacion Final del proyecto: "+ recomendacionFinal;
+  divProyectos.appendChild(mensajeRecomendacion);
+  console.log("Puntaje Total: " + puntajeTotal);
 }
 
 formCrear.addEventListener("submit", (event) => {
