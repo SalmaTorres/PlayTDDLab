@@ -85,6 +85,10 @@ function DevolverRecomendacionFinal(puntajeTotal,cantidadCommits){
   {
     recomendacion="En general aplicaste TDD pero hay espacio para mejorar, fijate que las pruebas esten en verde, que tengas un porcentaje de cobertura adecuado y que al modificar o generar codigo para las pruebas siempre vayas de a poco";
   }
+  else if(porcentaje<50)
+  {
+    recomendacion="No aplicaste TDD de manera adecuada, hay mucho espacio para mejorar, puede que las pruebas no esten en verde, que escribas lineas de codigo inecesarias y muy genericas desde el principio y tengas muy bajo porcentaje de cobertura, necesitas practica";
+  }
   return recomendacion;
 }
 
