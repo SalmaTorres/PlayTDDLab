@@ -76,10 +76,14 @@ function DevolverRecomendacionPorCommit(puntajeCommit){
 }
 function DevolverRecomendacionFinal(puntajeTotal,cantidadCommits){
   let recomendacion = "recomendacionFinal";
-  let porcentaje=(puntajeTotal/cantidadCommits*21)*100;
+  let porcentaje=(puntajeTotal/(cantidadCommits*21))*100;
   if(porcentaje>=80)
   {
     recomendacion="En general apicaste TDD de manera adecuada, felicidades. Las pruebas estan en verde, modificaste pocas lineas de codigo por commit y el porcentaje de cobertura es elevado"
+  }
+  else if(porcentaje>=50 && porcentaje<80)
+  {
+    recomendacion="En general aplicaste TDD pero hay espacio para mejorar, fijate que las pruebas esten en verde, que tengas un porcentaje de cobertura adecuado y que al modificar o generar codigo para las pruebas siempre vayas de a poco";
   }
   return recomendacion;
 }
