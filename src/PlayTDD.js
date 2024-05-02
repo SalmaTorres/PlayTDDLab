@@ -80,13 +80,20 @@ function DevolverRecomendacionFinal(puntajeCommit){
   return recomendacion
 }
 
+function seEncuentraEnLista(nombreProyecto, listaProyectos, indiceProyecto)
+{
+  if(nombreProyecto === listaProyectos[indiceProyecto]) return true;
+  else return false;
+
+}
+
 function BuscarProyecto(nombreProyecto, listaProyectos)
 {
  let indiceProyecto = 0;
- while(i < listaProyectos.length){
-  if(nombreProyecto === listaProyectos[indiceProyecto])
+ while(indiceProyecto < listaProyectos.length){
+  if(seEncuentraEnLista(nombreProyecto, listaProyectos, indiceProyecto))
   {
-    return listaProyectos[indiceProyecto];
+    return listaProyectos[indiceProyecto]
   }
   indiceProyecto = indiceProyecto + 1;
  }
