@@ -153,6 +153,17 @@ formCrear.addEventListener("submit", (event) => {
 
   divProyectos.appendChild(nuevoProyecto);
 
+  const textoBusqueda = document.createElement("p");
+  textoBusqueda.textContent = "Ingrese proyecto a buscar: ";
+  nuevoProyecto.appendChild(textoBusqueda);
+
+  const campoBusqueda = document.createElement("input");
+  nuevoProyecto.appendChild(campoBusqueda);
+
+  const botonBusqueda = document.createElement("button");
+  botonBusqueda.textContent = "Buscar Proyecto";
+  nuevoProyecto.appendChild(botonBusqueda);
+
   titulo.value = "";
   descripcion.value = "";
  
