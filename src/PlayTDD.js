@@ -96,4 +96,8 @@ function VerificarSiElNombreDelProyectoEsIgualA(NombreProyectoABuscar,NombreProy
   return NombreProyectoABuscar===NombreProyectoBuscado;
 }
 
-export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal, VerificarSiElNombreDelProyectoEsIgualA};
+function BuscarProyectosIguales(NombreProyectoABuscar,NombreProyectoBuscado){
+  return NombreProyectoBuscado;
+}
+
+export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal, VerificarSiElNombreDelProyectoEsIgualA, BuscarProyectosIguales};

@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal, VerificarSiElNombreDelProyectoEsIgualA} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal, VerificarSiElNombreDelProyectoEsIgualA, BuscarProyectosIguales} from "./PlayTDD.js";
 
 describe("PlayTDD", () => {
   let metricas;
@@ -141,5 +141,9 @@ it("Debería devolver True verificando si el nombre del proyecto es igual", () =
 
 it("Debería devolver False verificando si los nombres de los proyectos son distintos", () => {
   expect(VerificarSiElNombreDelProyectoEsIgualA("Proyecto3","Proyecto1")).toEqual(false);
+});
+
+it("Debería devolver el nombre del proyecto buscado", () => {
+  expect(BuscarProyectosIguales("Proyecto1","Proyecto1")).toEqual("Proyecto1");
 });
 });
