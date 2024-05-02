@@ -1,5 +1,6 @@
 let contador=0
 
+
 function DevolverTitulo(titulo){
   AumentarCont()
   return titulo
@@ -79,4 +80,19 @@ function DevolverRecomendacionFinal(puntajeCommit){
   return recomendacion
 }
 
-export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal};
+function BuscarProyecto(nombreProyecto, listaProyectos)
+{
+ let i = 0;
+ while(i < listaProyectos.length){
+  if(nombreProyecto === listaProyectos[i])
+  {
+    return listaProyectos[i];
+  }
+  i = i + 1;
+ }
+}
+
+
+
+
+export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal, BuscarProyecto};

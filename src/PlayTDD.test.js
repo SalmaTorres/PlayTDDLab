@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal} from "./PlayTDD.js";
+import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal, BuscarProyecto} from "./PlayTDD.js";
 
 describe("PlayTDD", () => {
   let metricas;
@@ -121,4 +121,12 @@ it("Debería devolver el 3er mensaje de recomendacion si el puntaje es menor a 1
 it("Debería devolver el mensaje de recomendacion final solamente", () => {
   expect(DevolverRecomendacionFinal(-1)).toEqual("recomendacionFinal");
 });
+
+it("Si busco FizzBuzz deberia retornar FizzBuzz siempre y cuando exista este proyecto", () => {
+  let nombresProyectos = ["Hola", "Proyecto1", "FizzBuzz", "Otro"];
+  expect(BuscarProyecto("FizzBuzz", nombresProyectos)).toEqual("FizzBuzz");
+});
+
+
+
 });

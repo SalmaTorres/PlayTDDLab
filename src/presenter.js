@@ -8,7 +8,8 @@ const divProyectos = document.querySelector("#Lista-proyectos");
 let puntajeTotal = 0;
 let puntajesPruebas = [];
 let puntajesLineas = [];
-let puntajesCobertura = []
+let puntajesCobertura = [];
+let nombresProyectos = [];
 
 function eliminarProyecto(event) {
   const proyectoAEliminar = event.target.parentNode;
@@ -101,7 +102,7 @@ function actualizarTabla() {
     });
 
   var celdaPuntaje = fila.insertCell();
-  puntajeCommit = obtenerPuntajeCommit(index);
+  var puntajeCommit = obtenerPuntajeCommit(index);
   celdaPuntaje.textContent = puntajeCommit;
 
   var celdaRecomendacion = fila.insertCell();
@@ -137,6 +138,8 @@ formCrear.addEventListener("submit", (event) => {
 
   const nuevoProyecto = document.createElement("p");
   nuevoProyecto.textContent = DevolverTitulo(tituloV) + " : " + DevolverDescripcion(descripcionV);
+
+  nombresProyectos.push(DevolverTitulo(tituloV));
   
   const botonEliminar = document.createElement("button");
   botonEliminar.textContent = "Eliminar";
