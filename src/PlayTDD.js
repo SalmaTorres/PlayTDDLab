@@ -93,7 +93,7 @@ function DevolverRecomendacionFinal(puntajeTotal,cantidadCommits){
 }
 
 function VerificarSiElNombreDelProyectoEsIgualA(NombreProyectoABuscar,NombreProyectoBuscado){
-  return true;
+  return NombreProyectoABuscar===NombreProyectoBuscado;
 }
 
 export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal, VerificarSiElNombreDelProyectoEsIgualA};

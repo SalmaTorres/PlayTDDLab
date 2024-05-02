@@ -134,4 +134,8 @@ it("Debería devolver el mensaje de recomendacion final si tuvo menos de 50% de 
 it("Debería devolver True si el nombre del proyecto es igual", () => {
   expect(VerificarSiElNombreDelProyectoEsIgualA("Proyecto1","Proyecto1")).toEqual(true);
 });
+
+it("Debería devolver True verificando si el nombre del proyecto es igual", () => {
+  expect(VerificarSiElNombreDelProyectoEsIgualA("Proyecto1","Proyecto1")).toEqual(true);
+});
 });
