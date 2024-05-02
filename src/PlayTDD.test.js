@@ -127,6 +127,10 @@ it("Si busco FizzBuzz deberia retornar FizzBuzz siempre y cuando exista este pro
   expect(BuscarProyecto("FizzBuzz", nombresProyectos)).toEqual("FizzBuzz");
 });
 
+it("Si busco Bisiesto deberia retornar El proyecto no existe siempre y cuando no exista este proyecto", () => {
+  let nombresProyectos = ["Hola", "Proyecto1", "FizzBuzz", "Otro"];
+  expect(BuscarProyecto("Bisiesto", nombresProyectos)).toEqual("El proyecto no existe");
+});
 
 
 });

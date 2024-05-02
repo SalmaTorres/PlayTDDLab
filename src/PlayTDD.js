@@ -82,14 +82,15 @@ function DevolverRecomendacionFinal(puntajeCommit){
 
 function BuscarProyecto(nombreProyecto, listaProyectos)
 {
- let i = 0;
+ let indiceProyecto = 0;
  while(i < listaProyectos.length){
-  if(nombreProyecto === listaProyectos[i])
+  if(nombreProyecto === listaProyectos[indiceProyecto])
   {
-    return listaProyectos[i];
+    return listaProyectos[indiceProyecto];
   }
-  i = i + 1;
+  indiceProyecto = indiceProyecto + 1;
  }
+ return "El proyecto no existe";
 }
 
 

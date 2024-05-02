@@ -140,7 +140,7 @@ formCrear.addEventListener("submit", (event) => {
   nuevoProyecto.textContent = DevolverTitulo(tituloV) + " : " + DevolverDescripcion(descripcionV);
 
   nombresProyectos.push(DevolverTitulo(tituloV));
-  
+
   const botonEliminar = document.createElement("button");
   botonEliminar.textContent = "Eliminar";
   botonEliminar.addEventListener("click", eliminarProyecto);
@@ -155,5 +155,5 @@ formCrear.addEventListener("submit", (event) => {
 
   titulo.value = "";
   descripcion.value = "";
-  
+ 
 });
