@@ -146,4 +146,8 @@ it("Debería devolver False verificando si los nombres de los proyectos son dist
 it("Debería devolver el nombre del proyecto buscado", () => {
   expect(BuscarProyectosIguales("Proyecto1","Proyecto1")).toEqual("Proyecto1");
 });
+
+it("Debería devolver el nombre del proyecto buscado verificando que sean iguales", () => {
+  expect(BuscarProyectosIguales("Proyecto1","Proyecto1")).toEqual("Proyecto1");
+});
 });

@@ -97,6 +97,10 @@ function VerificarSiElNombreDelProyectoEsIgualA(NombreProyectoABuscar,NombreProy
 }
 
 function BuscarProyectosIguales(NombreProyectoABuscar,NombreProyectoBuscado){
+  let NombreProyectoEncontrado;
+  if (VerificarSiElNombreDelProyectoEsIgualA(NombreProyectoABuscar,NombreProyectoBuscado)===true){
+    NombreProyectoEncontrado=NombreProyectoBuscado;
+  }
   return NombreProyectoBuscado;
 }
 
