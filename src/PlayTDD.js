@@ -92,4 +92,8 @@ function DevolverRecomendacionFinal(puntajeTotal,cantidadCommits){
   return recomendacion;
 }
 
-export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal};
+function VerificarSiElNombreDelProyectoEsIgualA(NombreProyectoABuscar,NombreProyectoBuscado){
+  return true;
+}
+
+export {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal, VerificarSiElNombreDelProyectoEsIgualA};

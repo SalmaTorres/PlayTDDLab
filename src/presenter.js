@@ -4,12 +4,15 @@ const titulo = document.querySelector("#titulo-proyecto");
 const descripcion = document.querySelector("#descripcion-proyecto");
 const formCrear = document.querySelector("#crear-form");
 const divProyectos = document.querySelector("#Lista-proyectos");
+const ProyectoBuscado = document.querySelector("#titulo-proyecto-buscado");
+const formBuscar = document.querySelector("#buscar-form");
 
 let cantidadCommits=0;
 let puntajeTotal = 0;
 let puntajesPruebas = [];
 let puntajesLineas = [];
 let puntajesCobertura = []
+let NombresProyectosCreados = [];
 
 function eliminarProyecto(event) {
   const proyectoAEliminar = event.target.parentNode;
@@ -153,6 +156,7 @@ formCrear.addEventListener("submit", (event) => {
 
   const nuevoProyecto = document.createElement("p");
   nuevoProyecto.textContent = DevolverTitulo(tituloV) + " : " + DevolverDescripcion(descripcionV);
+  NombresProyectosCreados[AumentarCont()-1]=tituloV;
   
   const botonEliminar = document.createElement("button");
   botonEliminar.textContent = "Eliminar";
