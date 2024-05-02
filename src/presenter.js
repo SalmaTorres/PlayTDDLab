@@ -133,11 +133,16 @@ function actualizarTabla() {
   }
  puntajeTotalParrafo.textContent = "El puntaje total del proyecto es: " + puntajeTotal;
   
-  let recomendacionFinal = DevolverRecomendacionFinal(puntajeTotal, cantidadCommits);
-  var mensajeRecomendacion = document.createElement("p");
-  mensajeRecomendacion.textContent = "Recomendacion Final del proyecto: "+ recomendacionFinal;
-  divProyectos.appendChild(mensajeRecomendacion);
-  console.log("Puntaje Total: " + puntajeTotal);
+ let mensajeRecomendacion = document.getElementById("mensajeRecomendacion");
+ if (!mensajeRecomendacion) {
+   mensajeRecomendacion = document.createElement("p");
+   mensajeRecomendacion.id = "mensajeRecomendacion";
+   divProyectos.appendChild(mensajeRecomendacion);
+ }
+ let recomendacionFinal = DevolverRecomendacionFinal(puntajeTotal, cantidadCommits);
+ mensajeRecomendacion.textContent = "Recomendacion Final del proyecto: "+ recomendacionFinal;
+
+ console.log("Puntaje Total: " + puntajeTotal);
 }
 
 formCrear.addEventListener("submit", (event) => {
