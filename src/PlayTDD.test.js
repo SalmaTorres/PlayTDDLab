@@ -1,12 +1,13 @@
-import {obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal} from "./PlayTDD.js";
 import { Proyecto } from "./Proyecto.js";
 import { Metricas } from "./Metricas.js";
+import { Puntajes } from "./Puntajes.js";
 
 describe("PlayTDD", () => {
-  let Clasemetricas, proyecto;
+  let Clasemetricas, proyecto, puntajes;
   beforeEach(() => {
     proyecto = new Proyecto();
     Clasemetricas = new Metricas();
+    puntajes = new Puntajes();
   });
   it("Deberia devolver el titulo", () => {
     expect(proyecto.DevolverTitulo("titulo")).toEqual("titulo");
@@ -49,91 +50,91 @@ describe("PlayTDD", () => {
 });
 
 it("Debería asignar un puntaje de 0 para una cantidad de 0 pruebas pasadas", () => {
-  expect(obtenerPuntajePruebas(0)).toEqual(0); 
+  expect(puntajes.obtenerPuntajePruebas(0)).toEqual(0); 
 });
 
 it("Debería asignar un puntaje de 0 para una cantidad de 1 pruebas pasadas", () => {
-  expect(obtenerPuntajePruebas(1)).toEqual(1);
+  expect(puntajes.obtenerPuntajePruebas(1)).toEqual(1);
 });
 
 it("Debería asignar un puntaje de 0 para una cantidad de 2 pruebas pasadas", () => {
-  expect(obtenerPuntajePruebas(2)).toEqual(2);
+  expect(puntajes.obtenerPuntajePruebas(2)).toEqual(2);
 });
   
 
 it("Debería asignar un puntaje de 10 para una cantidad de <10 lineas modificadas", () => {
-  expect(obtenerPuntajeLineas(7)).toEqual(10); 
+  expect(puntajes.obtenerPuntajeLineas(7)).toEqual(10); 
 });
 
 it("Debería asignar un puntaje de 5 para una cantidad de >=10 y <20 lineas modificadas", () => {
-  expect(obtenerPuntajeLineas(14)).toEqual(5);
+  expect(puntajes.obtenerPuntajeLineas(14)).toEqual(5);
 });
 
 it("Debería asignar un puntaje de 0 para una cantidad de >20 lineas modificadas", () => {
-  expect(obtenerPuntajeLineas(21)).toEqual(0);
+  expect(puntajes.obtenerPuntajeLineas(21)).toEqual(0);
 });
 
 it("Debería asignar un puntaje de 10 para una cobertura >=80%", () => {
-  expect(obtenerPuntajeCobertura(81)).toEqual(10); 
+  expect(puntajes.obtenerPuntajeCobertura(81)).toEqual(10); 
 });
 
 it("Debería asignar un puntaje de 5 para una cobertura >=50% y <80%", () => {
-  expect(obtenerPuntajeCobertura(63)).toEqual(5);
+  expect(puntajes.obtenerPuntajeCobertura(63)).toEqual(5);
 });
 
 it("ebería asignar un puntaje de 0 para una cobertura <50%", () => {
-  expect(obtenerPuntajeCobertura(32)).toEqual(0);
+  expect(puntajes.obtenerPuntajeCobertura(32)).toEqual(0);
 });
 
 it("Debería asignar un puntaje de 0 para el puntaje por Commit", () => {
-  expect(obtenerPuntajePorCommit(0,0,0)).toEqual(0);
+  expect(puntajes.obtenerPuntajePorCommit(0,0,0)).toEqual(0);
 });
 
 it("Debería asignar un puntaje de 0 sumando los puntajes para el puntaje por Commit", () => {
-  expect(obtenerPuntajePorCommit(0,0,0)).toEqual(0);
+  expect(puntajes.obtenerPuntajePorCommit(0,0,0)).toEqual(0);
 });
 
 it("Debería asignar un puntaje igual a la suma de los puntajes para el puntaje por Commit", () => {
-  expect(obtenerPuntajePorCommit(5,6,7)).toEqual(18);
+  expect(puntajes.obtenerPuntajePorCommit(5,6,7)).toEqual(18);
 });
 
 it("Debería devolver la palabra recomendacion solamente", () => {
-  expect(DevolverRecomendacionPorCommit(-1)).toEqual("recomendacion");
+  expect(puntajes.DevolverRecomendacionPorCommit(-1)).toEqual("recomendacion");
 });
 
 it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es igual a 21", () => {
-  expect(DevolverRecomendacionPorCommit(21)).toEqual("Tus prácticas de TDD son sólidas y consistentes. Demuestras un dominio sólido de las mejores prácticas y una comprensión profunda de cómo aplicarlas efectivamente en tu desarrollo.");
+  expect(puntajes.DevolverRecomendacionPorCommit(21)).toEqual("Tus prácticas de TDD son sólidas y consistentes. Demuestras un dominio sólido de las mejores prácticas y una comprensión profunda de cómo aplicarlas efectivamente en tu desarrollo.");
 });
 
 it("Debería devolver el 1mer mensaje de recomendacion si el puntaje es mayor a 21", () => {
-  expect(DevolverRecomendacionPorCommit(23)).toEqual("Tus prácticas de TDD son sólidas y consistentes. Demuestras un dominio sólido de las mejores prácticas y una comprensión profunda de cómo aplicarlas efectivamente en tu desarrollo.");
+  expect(puntajes.DevolverRecomendacionPorCommit(23)).toEqual("Tus prácticas de TDD son sólidas y consistentes. Demuestras un dominio sólido de las mejores prácticas y una comprensión profunda de cómo aplicarlas efectivamente en tu desarrollo.");
 });
 
 it("Debería devolver el 2do mensaje de recomendacion si el puntaje es igual a 20", () => {
-  expect(DevolverRecomendacionPorCommit(20)).toEqual("Tu práctica de TDD muestra un buen nivel de compromiso, pero aún hay margen para mejorar. Considera escribir pruebas más específicas y detalladas para abordar casos límite y asegurar una cobertura más completa.");
+  expect(puntajes.DevolverRecomendacionPorCommit(20)).toEqual("Tu práctica de TDD muestra un buen nivel de compromiso, pero aún hay margen para mejorar. Considera escribir pruebas más específicas y detalladas para abordar casos límite y asegurar una cobertura más completa.");
 });
 
 it("Debería devolver el 2do mensaje de recomendacion si el puntaje es menor a 20 y mayor a 10", () => {
-  expect(DevolverRecomendacionPorCommit(15)).toEqual("Tu práctica de TDD muestra un buen nivel de compromiso, pero aún hay margen para mejorar. Considera escribir pruebas más específicas y detalladas para abordar casos límite y asegurar una cobertura más completa.");
+  expect(puntajes.DevolverRecomendacionPorCommit(15)).toEqual("Tu práctica de TDD muestra un buen nivel de compromiso, pero aún hay margen para mejorar. Considera escribir pruebas más específicas y detalladas para abordar casos límite y asegurar una cobertura más completa.");
 });
 
 it("Debería devolver el 3er mensaje de recomendacion si el puntaje es igual a 10", () => {
-  expect(DevolverRecomendacionPorCommit(10)).toEqual("Tu uso de TDD podría mejorar. Es importante escribir pruebas más exhaustivas y pensar más cuidadosamente en los casos de prueba para garantizar una mayor confiabilidad en el código.");
+  expect(puntajes.DevolverRecomendacionPorCommit(10)).toEqual("Tu uso de TDD podría mejorar. Es importante escribir pruebas más exhaustivas y pensar más cuidadosamente en los casos de prueba para garantizar una mayor confiabilidad en el código.");
 });
 
 it("Debería devolver el 3er mensaje de recomendacion si el puntaje es menor a 10 y mayor o igual que 0", () => {
-  expect(DevolverRecomendacionPorCommit(5)).toEqual("Tu uso de TDD podría mejorar. Es importante escribir pruebas más exhaustivas y pensar más cuidadosamente en los casos de prueba para garantizar una mayor confiabilidad en el código.");
+  expect(puntajes.DevolverRecomendacionPorCommit(5)).toEqual("Tu uso de TDD podría mejorar. Es importante escribir pruebas más exhaustivas y pensar más cuidadosamente en los casos de prueba para garantizar una mayor confiabilidad en el código.");
 });
 it("Debería devolver el mensaje de recomendacion final solamente", () => {
-  expect(DevolverRecomendacionFinal(-1)).toEqual("recomendacionFinal");
+  expect(puntajes.DevolverRecomendacionFinal(-1)).toEqual("recomendacionFinal");
 });
 it("Debería devolver el mensaje de recomendacion final si tuvo al menos un 80% de buena practica de TDD en todo el proyecto", () => {
-  expect(DevolverRecomendacionFinal(58,3)).toEqual("En general apicaste TDD de manera adecuada, felicidades. Las pruebas estan en verde, modificaste pocas lineas de codigo por commit y el porcentaje de cobertura es elevado");
+  expect(puntajes.DevolverRecomendacionFinal(58,3)).toEqual("En general apicaste TDD de manera adecuada, felicidades. Las pruebas estan en verde, modificaste pocas lineas de codigo por commit y el porcentaje de cobertura es elevado");
 });
 it("Debería devolver el mensaje de recomendacion final si tuvo al menos un 50% a 79% de de TDD en todo el proyecto", () => {
-  expect(DevolverRecomendacionFinal(54,4)).toEqual("En general aplicaste TDD pero hay espacio para mejorar, fijate que las pruebas esten en verde, que tengas un porcentaje de cobertura adecuado y que al modificar o generar codigo para las pruebas siempre vayas de a poco");
+  expect(puntajes.DevolverRecomendacionFinal(54,4)).toEqual("En general aplicaste TDD pero hay espacio para mejorar, fijate que las pruebas esten en verde, que tengas un porcentaje de cobertura adecuado y que al modificar o generar codigo para las pruebas siempre vayas de a poco");
 });
 it("Debería devolver el mensaje de recomendacion final si tuvo menos de 50% de eficacia de TDD en todo el proyecto", () => {
-  expect(DevolverRecomendacionFinal(40,4)).toEqual("No aplicaste TDD de manera adecuada, hay mucho espacio para mejorar, puede que las pruebas no esten en verde, que escribas lineas de codigo inecesarias y muy genericas desde el principio y tengas muy bajo porcentaje de cobertura, necesitas practica");
+  expect(puntajes.DevolverRecomendacionFinal(40,4)).toEqual("No aplicaste TDD de manera adecuada, hay mucho espacio para mejorar, puede que las pruebas no esten en verde, que escribas lineas de codigo inecesarias y muy genericas desde el principio y tengas muy bajo porcentaje de cobertura, necesitas practica");
 });
 });
