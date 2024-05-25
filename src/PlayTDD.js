@@ -1,13 +1,3 @@
-function AnadirMetricas(metricas, nro_commit, cant_pruebas, cant_lineas, porc_cobertura){
-  metricas.push([nro_commit, cant_pruebas, cant_lineas, porc_cobertura]);
-  return metricas;
-}
-
-function eliminarMetrica(metricas, index) {
-  metricas.splice(index, 1);
-  return metricas;
-}
-
 function obtenerPuntajePruebas(cantidadPruebasPasadas) {
   if (cantidadPruebasPasadas === 0) {
     return 0;
@@ -69,4 +59,4 @@ function DevolverRecomendacionFinal(puntajeTotal,cantidadCommits){
   return recomendacion;
 }
 
-export {AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal};
+export {obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal};

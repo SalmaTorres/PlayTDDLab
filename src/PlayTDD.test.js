@@ -1,11 +1,12 @@
-import {AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal} from "./PlayTDD.js";
+import {obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal} from "./PlayTDD.js";
 import { Proyecto } from "./Proyecto.js";
+import { Metricas } from "./Metricas.js";
 
 describe("PlayTDD", () => {
-  let metricas, proyecto;
+  let Clasemetricas, proyecto;
   beforeEach(() => {
     proyecto = new Proyecto();
-    metricas = [];
+    Clasemetricas = new Metricas();
   });
   it("Deberia devolver el titulo", () => {
     expect(proyecto.DevolverTitulo("titulo")).toEqual("titulo");
@@ -27,24 +28,24 @@ describe("PlayTDD", () => {
   });
 
   it("Debería agregar los datos a una matriz vacía", () => {
-    AnadirMetricas(metricas, 1, 10, 100, 90);
-    expect(metricas).toEqual([[1, 10, 100, 90]]);
+    Clasemetricas.AnadirMetricas(1, 10, 100, 90);
+    expect(Clasemetricas.metricas).toEqual([[1, 10, 100, 90]]);
   });
   it("Debería agregar los datos al final de una matriz no vacía", () => {
-    metricas.push([1, 10, 100, 90]);
-    AnadirMetricas(metricas, 2, 20, 200, 80);
-    expect(metricas).toEqual([[1, 10, 100, 90], [2, 20, 200, 80]]);
+    Clasemetricas.metricas.push([1, 10, 100, 90]);
+    Clasemetricas.AnadirMetricas(2, 20, 200, 80);
+    expect(Clasemetricas.metricas).toEqual([[1, 10, 100, 90], [2, 20, 200, 80]]);
   });
 
   it("Debería eliminar una métrica", () => {
-    metricas.push([1, 10, 100, 90]);
-    metricas.push([2, 20, 200, 0]);
-    expect(metricas.length).toEqual(2);
+    Clasemetricas.metricas.push([1, 10, 100, 90]);
+    Clasemetricas.metricas.push([2, 20, 200, 0]);
+    expect(Clasemetricas.metricas.length).toEqual(2);
 
-    eliminarMetrica(metricas, 0);
+    Clasemetricas.eliminarMetrica(0);
 
-    expect(metricas.length).toEqual(1);
-    expect(metricas).toEqual([[2, 20, 200, 0]]); 
+    expect(Clasemetricas.metricas.length).toEqual(1);
+    expect(Clasemetricas.metricas).toEqual([[2, 20, 200, 0]]); 
 });
 
 it("Debería asignar un puntaje de 0 para una cantidad de 0 pruebas pasadas", () => {
