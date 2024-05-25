@@ -1,24 +1,29 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal} from "./PlayTDD.js";
+import {AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal} from "./PlayTDD.js";
+import { Proyecto } from "./Proyecto.js";
 
 describe("PlayTDD", () => {
-  let metricas;
+  let metricas, proyecto;
   beforeEach(() => {
+    proyecto = new Proyecto();
     metricas = [];
   });
   it("Deberia devolver el titulo", () => {
-    expect(DevolverTitulo("titulo")).toEqual("titulo");
+    expect(proyecto.DevolverTitulo("titulo")).toEqual("titulo");
   });
 
   it("Deberia devolver la descripcion", () => {
-    expect(DevolverDescripcion("descripcion")).toEqual("descripcion");
+    expect(proyecto.DevolverDescripcion("descripcion")).toEqual("descripcion");
   });
 
   it("Deberia aumentar el contador", () => {
-    expect(AumentarCont()).toEqual(2);
+    proyecto.DevolverTitulo("titulo");
+    expect(proyecto.AumentarCont()).toEqual(2);
   });
 
   it("Deberia disminuir el contador", () => {
-    expect(DisminuirCont()).toEqual(1);
+    proyecto.DevolverTitulo("titulo"); 
+    proyecto.AumentarCont(); 
+    expect(proyecto.DisminuirCont()).toEqual(1);
   });
 
   it("Debería agregar los datos a una matriz vacía", () => {
