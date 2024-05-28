@@ -1,4 +1,4 @@
-import {DevolverTitulo, DevolverDescripcion, AumentarCont, DisminuirCont, AnadirMetricas, eliminarMetrica, obtenerPuntajePruebas, obtenerPuntajeLineas, obtenerPuntajeCobertura, obtenerPuntajePorCommit, DevolverRecomendacionPorCommit, DevolverRecomendacionFinal} from "./PlayTDD.js";
+import { ProyectoRepositorio } from "./ProyectosRepositorio";
 
 const titulo = document.querySelector("#titulo-proyecto");
 const descripcion = document.querySelector("#descripcion-proyecto");
@@ -11,7 +11,9 @@ let puntajesPruebas = [];
 let puntajesLineas = [];
 let puntajesCobertura = []
 
-function eliminarProyecto(event) {
+let RepositorioDeProyectos = new ProyectoRepositorio();
+
+/*function eliminarProyecto(event) {
   const proyectoAEliminar = event.target.parentNode;
   proyectoAEliminar.remove();
   DisminuirCont();
@@ -144,6 +146,7 @@ function actualizarTabla() {
 
  console.log("Puntaje Total: " + puntajeTotal);
 }
+*/
 
 formCrear.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -151,22 +154,30 @@ formCrear.addEventListener("submit", (event) => {
   const tituloV = titulo.value;
   const descripcionV = descripcion.value;
 
-  const nuevoProyecto = document.createElement("p");
-  nuevoProyecto.textContent = DevolverTitulo(tituloV) + " : " + DevolverDescripcion(descripcionV);
-  
-  const botonEliminar = document.createElement("button");
-  botonEliminar.textContent = "Eliminar";
-  botonEliminar.addEventListener("click", eliminarProyecto);
-  nuevoProyecto.appendChild(botonEliminar);
-
-  const botonMetricas = document.createElement("button");
-  botonMetricas.textContent = "Ir a métricas";
-  botonMetricas.addEventListener("click", mostrarFormulario);
-  nuevoProyecto.appendChild(botonMetricas);
-
-  divProyectos.appendChild(nuevoProyecto);
+  RepositorioDeProyectos.AgregarProyecto(tituloV, descripcionV);
+  mostrarProyectos();
 
   titulo.value = "";
   descripcion.value = "";
-  
 });
+
+function mostrarProyectos() {
+  divProyectos.innerHTML = "";
+  RepositorioDeProyectos.proyectos.forEach(proyecto => {
+    const nuevoProyecto = document.createElement("p");
+    nuevoProyecto.textContent = proyecto.DevolverTitulo() + " : " + proyecto.DevolverDescripcion();
+    nuevoProyecto.dataset.titulo = proyecto.DevolverTitulo();
+    
+    const botonEliminar = document.createElement("button");
+    botonEliminar.textContent = "Eliminar";
+    //botonEliminar.addEventListener("click", eliminarProyecto);
+    nuevoProyecto.appendChild(botonEliminar);
+
+    const botonMetricas = document.createElement("button");
+    botonMetricas.textContent = "Ir a métricas";
+    botonMetricas.addEventListener("click", mostrarFormulario);
+    nuevoProyecto.appendChild(botonMetricas);
+
+    divProyectos.appendChild(nuevoProyecto);
+  });
+}
