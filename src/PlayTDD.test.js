@@ -1,13 +1,15 @@
 import { Proyecto } from "./Proyecto.js";
 import { Metricas } from "./Metricas.js";
 import { Puntajes } from "./Puntajes.js";
+import { ProyectoRepositorio } from "./ProyectosRepositorio.js";
 
 describe("PlayTDD", () => {
-  let Clasemetricas, proyecto, puntajes;
+  let Clasemetricas, proyecto, puntajes, proyectosRepositorio;
   beforeEach(() => {
     proyecto = new Proyecto("titulo", "descripcion");
     Clasemetricas = new Metricas();
     puntajes = new Puntajes();
+    proyectosRepositorio = new ProyectoRepositorio();
   });
   it("Deberia devolver el titulo", () => {
     expect(proyecto.DevolverTitulo()).toEqual("titulo");
@@ -18,12 +20,12 @@ describe("PlayTDD", () => {
   });
 
   it("Deberia aumentar el contador", () => {
-    expect(proyecto.AumentarCont()).toEqual(1);
+    expect(proyectosRepositorio.AgregarProyecto("titulo", "descripcion")).toEqual(1);
   });
 
   it("Deberia disminuir el contador", () => {
-    proyecto.AumentarCont();
-    expect(proyecto.DisminuirCont()).toEqual(0);
+    proyectosRepositorio.AgregarProyecto("titulo", "descripcion")
+    expect(proyectosRepositorio.EliminarProyectoPorTitulo("titulo")).toEqual(0);
   });
 
   it("Debería agregar los datos a una matriz vacía", () => {
