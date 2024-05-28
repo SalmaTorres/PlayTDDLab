@@ -1,15 +1,16 @@
 export class Proyecto {
-    constructor() {
+    constructor(titulo, descripcion) {
+      this.titulo = titulo;
+      this.descripcion = descripcion;
       this.contador = 0;
     }
   
-    DevolverTitulo(titulo) {
-      this.AumentarCont();
-      return titulo;
+    DevolverTitulo() {
+      return this.titulo;
     }
   
-    DevolverDescripcion(descripcion) {
-      return descripcion;
+    DevolverDescripcion() {
+      return this.descripcion;
     }
   
     AumentarCont() {

@@ -5,27 +5,25 @@ import { Puntajes } from "./Puntajes.js";
 describe("PlayTDD", () => {
   let Clasemetricas, proyecto, puntajes;
   beforeEach(() => {
-    proyecto = new Proyecto();
+    proyecto = new Proyecto("titulo", "descripcion");
     Clasemetricas = new Metricas();
     puntajes = new Puntajes();
   });
   it("Deberia devolver el titulo", () => {
-    expect(proyecto.DevolverTitulo("titulo")).toEqual("titulo");
+    expect(proyecto.DevolverTitulo()).toEqual("titulo");
   });
 
   it("Deberia devolver la descripcion", () => {
-    expect(proyecto.DevolverDescripcion("descripcion")).toEqual("descripcion");
+    expect(proyecto.DevolverDescripcion()).toEqual("descripcion");
   });
 
   it("Deberia aumentar el contador", () => {
-    proyecto.DevolverTitulo("titulo");
-    expect(proyecto.AumentarCont()).toEqual(2);
+    expect(proyecto.AumentarCont()).toEqual(1);
   });
 
   it("Deberia disminuir el contador", () => {
-    proyecto.DevolverTitulo("titulo"); 
-    proyecto.AumentarCont(); 
-    expect(proyecto.DisminuirCont()).toEqual(1);
+    proyecto.AumentarCont();
+    expect(proyecto.DisminuirCont()).toEqual(0);
   });
 
   it("Debería agregar los datos a una matriz vacía", () => {
