@@ -13,37 +13,7 @@ let puntajesCobertura = []
 
 let RepositorioDeProyectos = new ProyectoRepositorio();
 
-/*function eliminarProyecto(event) {
-  const proyectoAEliminar = event.target.parentNode;
-  proyectoAEliminar.remove();
-  DisminuirCont();
-
-  cantidadCommits--;
-  
-}
-
-var metricas = [];
-
-function mostrarFormulario() {
-  const form_metricas = document.createElement("div");
-  form_metricas.id = "formulario";
-  form_metricas.innerHTML = `
-    <form id="metricasForm">
-      <label for="nro_commit">Número de Commit:</label>
-      <input type="number" id="nro_commit" name="nro_commit"><br><br>
-      <label for="cant_pruebas">Cantidad de Pruebas:</label>
-      <input type="number" id="cant_pruebas" name="cant_pruebas"><br><br>
-      <label for="cant_lineas">Cantidad de Líneas:</label>
-      <input type="number" id="cant_lineas" name="cant_lineas"><br><br>
-      <label for="porc_cobertura">Porcentaje de Cobertura:</label>
-      <input type="number" id="porc_cobertura" name="porc_cobertura"><br><br>
-      <button type="button" id="agregarMetrica">Agregar</button>
-    </form>
-  `;
-  document.body.appendChild(form_metricas);
-  document.getElementById("agregarMetrica").addEventListener("click", agregarMetrica); 
-}
-
+/*
 function agregarMetrica() {
   const vCommit = document.getElementById("nro_commit").value;
   const vPruebas = parseInt(document.getElementById("cant_pruebas").value);
@@ -170,14 +140,40 @@ function mostrarProyectos() {
     
     const botonEliminar = document.createElement("button");
     botonEliminar.textContent = "Eliminar";
-    //botonEliminar.addEventListener("click", eliminarProyecto);
+    botonEliminar.addEventListener("click", eliminarProyecto);
     nuevoProyecto.appendChild(botonEliminar);
 
     const botonMetricas = document.createElement("button");
     botonMetricas.textContent = "Ir a métricas";
-    botonMetricas.addEventListener("click", mostrarFormulario);
+    botonMetricas.addEventListener("click", mostrarFormularioMetricas);
     nuevoProyecto.appendChild(botonMetricas);
 
     divProyectos.appendChild(nuevoProyecto);
   });
+}
+function eliminarProyecto(event) {
+  const index = event.target.parentElement.dataset.index;
+  RepositorioDeProyectos.EliminarProyectoPorTitulo(RepositorioDeProyectos.proyectos[index].DevolverTitulo());
+  mostrarProyectos();
+}
+
+function mostrarFormularioMetricas(event) {
+  const index = event.target.dataset.index;
+  const form_metricas = document.createElement("div");
+  form_metricas.id = "formulario";
+  form_metricas.innerHTML = `
+    <form id="metricasForm">
+      <label for="nro_commit">Número de Commit:</label>
+      <input type="number" id="nro_commit" name="nro_commit"><br><br>
+      <label for="cant_pruebas">Cantidad de Pruebas:</label>
+      <input type="number" id="cant_pruebas" name="cant_pruebas"><br><br>
+      <label for="cant_lineas">Cantidad de Líneas:</label>
+      <input type="number" id="cant_lineas" name="cant_lineas"><br><br>
+      <label for="porc_cobertura">Porcentaje de Cobertura:</label>
+      <input type="number" id="porc_cobertura" name="porc_cobertura"><br><br>
+      <button type="button" id="agregarMetrica" data-index="${index}">Agregar</button>
+    </form>
+  `;
+  document.body.appendChild(form_metricas);
+  document.getElementById("agregarMetrica").addEventListener("click", agregarMetrica); 
 }

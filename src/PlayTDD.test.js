@@ -1,5 +1,4 @@
 import { Proyecto } from "./Proyecto.js";
-import { Metricas } from "./Metricas.js";
 import { Puntajes } from "./Puntajes.js";
 import { ProyectoRepositorio } from "./ProyectosRepositorio.js";
 
@@ -7,7 +6,7 @@ describe("PlayTDD", () => {
   let Clasemetricas, proyecto, puntajes, proyectosRepositorio;
   beforeEach(() => {
     proyecto = new Proyecto("titulo", "descripcion");
-    Clasemetricas = new Metricas();
+    //Clasemetricas = new Metricas();
     puntajes = new Puntajes();
     proyectosRepositorio = new ProyectoRepositorio();
   });
@@ -29,24 +28,24 @@ describe("PlayTDD", () => {
   });
 
   it("Debería agregar los datos a una matriz vacía", () => {
-    Clasemetricas.AnadirMetricas(1, 10, 100, 90);
-    expect(Clasemetricas.metricas).toEqual([[1, 10, 100, 90]]);
+    proyecto.AnadirMetricas(1, 10, 100, 90);
+    expect(proyecto.DevolverMetricas()).toEqual([[1, 10, 100, 90]]);
   });
   it("Debería agregar los datos al final de una matriz no vacía", () => {
-    Clasemetricas.metricas.push([1, 10, 100, 90]);
-    Clasemetricas.AnadirMetricas(2, 20, 200, 80);
-    expect(Clasemetricas.metricas).toEqual([[1, 10, 100, 90], [2, 20, 200, 80]]);
+    proyecto.AnadirMetricas(1, 10, 100, 90);
+    proyecto.AnadirMetricas(2, 20, 200, 80);
+    expect(proyecto.DevolverMetricas()).toEqual([[1, 10, 100, 90], [2, 20, 200, 80]]);
   });
 
   it("Debería eliminar una métrica", () => {
-    Clasemetricas.metricas.push([1, 10, 100, 90]);
-    Clasemetricas.metricas.push([2, 20, 200, 0]);
-    expect(Clasemetricas.metricas.length).toEqual(2);
+    proyecto.AnadirMetricas(1, 10, 100, 90);
+    proyecto.AnadirMetricas(2, 20, 200, 0);
+    expect(proyecto.DevolverMetricas().length).toEqual(2);
 
-    Clasemetricas.eliminarMetrica(0);
+    proyecto.eliminarMetrica(0);
 
-    expect(Clasemetricas.metricas.length).toEqual(1);
-    expect(Clasemetricas.metricas).toEqual([[2, 20, 200, 0]]); 
+    expect(proyecto.DevolverMetricas().length).toEqual(1);
+    expect(proyecto.DevolverMetricas()).toEqual([[2, 20, 200, 0]]); 
 });
 
 it("Debería asignar un puntaje de 0 para una cantidad de 0 pruebas pasadas", () => {
