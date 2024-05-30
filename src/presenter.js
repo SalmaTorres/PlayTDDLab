@@ -1,5 +1,6 @@
 import { Puntajes } from "./Puntajes.js";
 import { ProyectoRepositorio } from "./ProyectosRepositorio.js";
+import { crearBoton, limpiarTabla, agregarFilasMetricas, actualizarPuntajeTotal, actualizarRecomendacionFinal } from "./helper.js";
 
 const inputTituloProyecto = document.querySelector("#tituloDelProyecto");
 const inputDescripcionProyecto = document.querySelector("#descripcionDelProyecto");
@@ -78,74 +79,18 @@ function mostrarTablaMetricas() {
   listaDeMetricas.appendChild(tablaMetricas);
 }
 
-/*
 function actualizarTabla() {
-  var tabla = document.getElementById("tablaMetricas");
-  if (!tabla) {
-    tabla = document.createElement("table");
-    tabla.id = "tablaMetricas";
-    tabla.innerHTML = `
-      <tr>
-        <th>Número de Commit</th>
-        <th>Cantidad de Pruebas</th>
-        <th>Cantidad de Líneas</th>
-        <th>Porcentaje de Cobertura</th>
-        <th>Puntaje por Commit</th>
-        <th>Recomendación por Commit</th>
-        <th>Acciones</th>
-      </tr>`;
-    document.body.appendChild(tabla);
-  }
-
-  while (tabla.rows.length > 1) {
-    tabla.deleteRow(1);
-  }
-
-  proyectoActual.DevolverMetricas().forEach((metrica, index) => {
-    var fila = tabla.insertRow();
-    metrica.forEach((dato) => {
-      var celda = fila.insertCell();
-      celda.textContent = dato;
-    });
-
-    var celdaPuntaje = fila.insertCell();
-    var puntajeCommit = obtenerPuntajeCommit(index);
-    celdaPuntaje.textContent = puntajeCommit;
-
-    var celdaRecomendacion = fila.insertCell();
-    celdaRecomendacion.textContent = puntajes.DevolverRecomendacionPorCommit(puntajeCommit);
-
-    var celdaAcciones = fila.insertCell();
-    var botonEliminar = document.createElement("button");
-    botonEliminar.textContent = "Eliminar";
-    botonEliminar.addEventListener("click", () => {
-      borrarMetrica(index);
-      actualizarTabla();
-    });
-
-    celdaAcciones.appendChild(botonEliminar);
-  });
-
-  var puntajeTotalParrafo = document.getElementById("puntajeTotalParrafo");
-  if (!puntajeTotalParrafo) {
-    puntajeTotalParrafo = document.createElement("p");
-    puntajeTotalParrafo.id = "puntajeTotalParrafo";
-    document.body.appendChild(puntajeTotalParrafo);
-  }
-  puntajeTotalParrafo.textContent = "El puntaje total del proyecto es: " + puntajes.obtenerPuntajeTotal();
-
-  let mensajeRecomendacion = document.getElementById("mensajeRecomendacion");
-  if (!mensajeRecomendacion) {
-    mensajeRecomendacion = document.createElement("p");
-    mensajeRecomendacion.id = "mensajeRecomendacion";
-    divContenedorProyectos.appendChild(mensajeRecomendacion);
-  }
-  let recomendacionFinal = puntajes.DevolverRecomendacionFinal(puntajes.obtenerPuntajeTotal(), proyectoActual.DevolverCantidadCommits());
-  mensajeRecomendacion.textContent = "Recomendacion Final del proyecto: " + recomendacionFinal;
-
-  console.log("Puntaje Total: " + puntajes.obtenerPuntajeTotal());
+  limpiarTabla(document.getElementById("tablaMetricas"));
+  agregarFilasMetricas(
+    document.getElementById("tablaMetricas"),
+    proyectoActual.DevolverMetricas(),
+    obtenerPuntajeCommit,
+    puntajes,
+    borrarMetrica
+  );
+  actualizarPuntajeTotal(puntajes);
+  actualizarRecomendacionFinal(puntajes, proyectoActual);
 }
-*/
 
 
 formCrearProyecto.addEventListener("submit", (event) => {
