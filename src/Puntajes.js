@@ -35,13 +35,21 @@ export class Puntajes {
   calcularPuntajeTotal() {
     let total = 0;
     for (let i = 0; i < this.puntajesPruebas.length; i++) {
-      total += this.puntajesPruebas[i] + this.puntajesLineas[i] + this.puntajesCobertura[i];
+      total += this.puntajesPruebas[i]*0.2 + this.puntajesLineas[i] + this.puntajesCobertura[i];
     }
     return total;
   }
 
-   obtenerPuntajePruebas(cantidadPruebasPasadas) {
-     return cantidadPruebasPasadas === 0 ? 0 : cantidadPruebasPasadas;
+  obtenerPuntajePruebas(porcentajePruebas) {
+    if (porcentajePruebas >= 100) {
+      return 20;
+    } else if (porcentajePruebas >= 80) {
+      return 16;
+    } else if (porcentajePruebas >= 60) {
+      return 12;
+    } else {
+      return 8;
+    }
   }
   
   obtenerPuntajeLineas(cantidadLineasModificadas) {
