@@ -1,4 +1,3 @@
-import { Proyecto } from "./Proyecto.js";
 import { Puntajes } from "./Puntajes.js";
 import { ProyectoRepositorio } from "./ProyectosRepositorio.js";
 
@@ -6,26 +5,21 @@ const titulo = document.querySelector("#titulo-proyecto");
 const descripcion = document.querySelector("#descripcion-proyecto");
 const formCrear = document.querySelector("#crear-form");
 const divProyectos = document.querySelector("#Lista-proyectos");
+const divAdmin = document.querySelector("#formulario-administrarProyectos")
+const divFormularioMetricas = document.querySelector("#formulario-metricas");
+const botonVolverAtras = document.querySelector("#volverAtras");
 
 let proyectosRepositorio = new ProyectoRepositorio();
 let puntajes = new Puntajes();
+let proyectoActual;
 
+/*
 let cantidadCommits = 0;
 let puntajeTotal = 0;
 let puntajesPruebas = [];
 let puntajesLineas = [];
-let puntajesCobertura = [];
-
-function eliminarProyecto(event) {
-  const proyectoAEliminar = event.target.parentNode;
-  const tituloProyecto = proyectoAEliminar.firstChild.textContent.split(":")[0].trim();
-  proyectosRepositorio.EliminarProyectoPorTitulo(tituloProyecto);
-  proyectoAEliminar.remove();
-  cantidadCommits--;
-}
-
-let proyectoActual;
-
+let puntajesCobertura = [];*/
+/*
 function mostrarFormulario() {
   const form_metricas = document.createElement("div");
   form_metricas.id = "formulario";
@@ -146,7 +140,7 @@ function actualizarTabla() {
 
   console.log("Puntaje Total: " + puntajeTotal);
 }
-
+*/
 formCrear.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -154,23 +148,49 @@ formCrear.addEventListener("submit", (event) => {
   const descripcionV = descripcion.value;
 
   proyectosRepositorio.AgregarProyecto(tituloV, descripcionV);
-  proyectoActual = proyectosRepositorio.proyectos[proyectosRepositorio.proyectos.length - 1];
-
-  const nuevoProyecto = document.createElement("p");
-  nuevoProyecto.textContent = proyectoActual.DevolverTitulo() + " : " + proyectoActual.DevolverDescripcion();
-
-  const botonEliminar = document.createElement("button");
-  botonEliminar.textContent = "Eliminar";
-  botonEliminar.addEventListener("click", eliminarProyecto);
-  nuevoProyecto.appendChild(botonEliminar);
-
-  const botonMetricas = document.createElement("button");
-  botonMetricas.textContent = "Ir a métricas";
-  botonMetricas.addEventListener("click", mostrarFormulario);
-  nuevoProyecto.appendChild(botonMetricas);
-
-  divProyectos.appendChild(nuevoProyecto);
+  mostrarProyectos();
 
   titulo.value = "";
   descripcion.value = "";
+});
+
+function crearBoton(texto, manejador, indice) {
+  const boton = document.createElement("button");
+  boton.textContent = texto;
+  boton.addEventListener("click", (event) => manejador(event, indice));
+  return boton;
+}
+
+function mostrarProyectos() {
+  divProyectos.innerHTML = "";
+  proyectosRepositorio.proyectos.forEach((proyecto, index) => {
+    const informacionProyecto = document.createElement("p");
+    informacionProyecto.textContent = `${proyecto.DevolverTitulo()} : ${proyecto.DevolverDescripcion()}`;
+    informacionProyecto.dataset.index = index;
+
+    const botonEliminar = crearBoton("Eliminar", eliminarProyecto, index);
+    const botonMetricas = crearBoton("Ir a métricas", mostrarFormularioMetricas, 5);
+
+    informacionProyecto.appendChild(botonEliminar);
+    informacionProyecto.appendChild(botonMetricas);
+    divProyectos.appendChild(informacionProyecto);
+  });
+}
+
+function eliminarProyecto(event, index) {
+  const titulo = proyectosRepositorio.proyectos[index].DevolverTitulo();
+  proyectosRepositorio.EliminarProyectoPorTitulo(titulo);
+  mostrarProyectos();
+}
+
+function mostrarFormularioMetricas(event, index) {
+  divAdmin.style.display = 'none';
+  divFormularioMetricas.style.display = 'block';
+
+  proyectoActual = proyectosRepositorio.proyectos[index];
+}
+
+botonVolverAtras.addEventListener("click", () => {
+  divFormularioMetricas.style.display = 'none';
+  divAdmin.style.display = 'block';
 });
