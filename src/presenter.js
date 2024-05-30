@@ -1,18 +1,23 @@
 import { Puntajes } from "./Puntajes.js";
 import { ProyectoRepositorio } from "./ProyectosRepositorio.js";
 
-const titulo = document.querySelector("#titulo-proyecto");
-const descripcion = document.querySelector("#descripcion-proyecto");
-const formCrear = document.querySelector("#crear-form");
-const divProyectos = document.querySelector("#Lista-proyectos");
-const divAdmin = document.querySelector("#formulario-administrarProyectos")
-const divFormularioMetricas = document.querySelector("#formulario-metricas");
-const botonVolverAtras = document.querySelector("#volverAtras");
+const inputTituloProyecto = document.querySelector("#tituloDelProyecto");
+const inputDescripcionProyecto = document.querySelector("#descripcionDelProyecto");
+const formCrearProyecto = document.querySelector("#formularioCrearProyecto");
+const divListaProyectos = document.querySelector("#listaDeProyectos");
+const divContenedorProyectos = document.querySelector("#contenedorDeProyectos");
+const divContenedorMetricas = document.querySelector("#contenedorDeMetricas");
+const botonVolverAProyectos = document.querySelector("#botonVolverAProyectos");
 
-let proyectosRepositorio = new ProyectoRepositorio();
-let puntajes = new Puntajes();
+let repositorioDeProyectos = new ProyectoRepositorio();
 let proyectoActual;
-
+/*
+let puntajes = new Puntajes();
+const vCommit = document.getElementById("nro_commit").value;
+const vPruebas = parseInt(document.getElementById("cant_pruebas").value);
+const vLineas = parseInt(document.getElementById("cant_lineas").value);
+const vCobertura = parseInt(document.getElementById("porc_cobertura").value);
+*/
 /*
 function agregarMetrica() {
   const vCommit = document.getElementById("nro_commit").value;
@@ -115,61 +120,56 @@ function actualizarTabla() {
   console.log("Puntaje Total: " + puntajeTotal);
 }
 */
-formCrear.addEventListener("submit", (event) => {
+formCrearProyecto.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const tituloV = titulo.value;
-  const descripcionV = descripcion.value;
-
-  proyectosRepositorio.AgregarProyecto(tituloV, descripcionV);
+  const tituloProyecto = inputTituloProyecto.value;
+  const descripcionProyecto = inputDescripcionProyecto.value;
+  repositorioDeProyectos.AgregarProyecto(tituloProyecto, descripcionProyecto);
   mostrarProyectos();
-
-  titulo.value = "";
-  descripcion.value = "";
+  inputTituloProyecto.value = "";
+  inputDescripcionProyecto.value = "";
 });
 
 function crearBoton(texto, manejador, indice) {
   const boton = document.createElement("button");
   boton.textContent = texto;
-  boton.addEventListener("click", (event) => manejador(event, indice));
+  boton.addEventListener("click", (event) => manejador(indice));
   return boton;
 }
 
 function mostrarProyectos() {
-  divProyectos.innerHTML = "";
-  proyectosRepositorio.proyectos.forEach((proyecto, index) => {
+  divListaProyectos.innerHTML = "";
+  repositorioDeProyectos.proyectos.forEach((proyecto, indice) => {
     const informacionProyecto = document.createElement("p");
     informacionProyecto.textContent = `${proyecto.DevolverTitulo()} : ${proyecto.DevolverDescripcion()}`;
-    informacionProyecto.dataset.index = index;
-
-    const botonEliminar = crearBoton("Eliminar", eliminarProyecto, index);
-    const botonMetricas = crearBoton("Ir a métricas", mostrarFormularioMetricas, 5);
-
+    informacionProyecto.dataset.index = indice;
+    const botonEliminar = crearBoton("Eliminar", eliminarProyecto, indice);
+    const botonIrAMetricas = crearBoton("Ir a Métricas", mostrarFormularioMetricas, indice);
     informacionProyecto.appendChild(botonEliminar);
-    informacionProyecto.appendChild(botonMetricas);
-    divProyectos.appendChild(informacionProyecto);
+    informacionProyecto.appendChild(botonIrAMetricas);
+    divListaProyectos.appendChild(informacionProyecto);
   });
 }
 
-function eliminarProyecto(event, index) {
-  const titulo = proyectosRepositorio.proyectos[index].DevolverTitulo();
-  const confirmacion = confirm(`¿Estás seguro de eliminar el proyecto "${titulo}"?`);
-  if (confirmacion) {
-    proyectosRepositorio.EliminarProyectoPorTitulo(titulo);
+function eliminarProyecto(indice) {
+  const tituloDelProyecto = repositorioDeProyectos.proyectos[indice].DevolverTitulo();
+  const confirmacionAceptada = confirm(`¿Estás seguro de eliminar el proyecto "${tituloDelProyecto}"?`);
+  if (confirmacionAceptada) {
+    repositorioDeProyectos.EliminarProyectoPorTitulo(tituloDelProyecto);
     mostrarProyectos();
   } else {
     return;
   }
 }
 
-function mostrarFormularioMetricas(event, index) {
-  divAdmin.style.display = 'none';
-  divFormularioMetricas.style.display = 'block';
-
-  proyectoActual = proyectosRepositorio.proyectos[index];
+function mostrarFormularioMetricas(indice) {
+  divContenedorProyectos.style.display = 'none';
+  divContenedorMetricas.style.display = 'block';
+  proyectoActual = repositorioDeProyectos.proyectos[indice];
 }
 
-botonVolverAtras.addEventListener("click", () => {
-  divFormularioMetricas.style.display = 'none';
-  divAdmin.style.display = 'block';
+botonVolverAProyectos.addEventListener("click", () => {
+  divContenedorMetricas.style.display = 'none';
+  divContenedorProyectos.style.display = 'block';
 });
