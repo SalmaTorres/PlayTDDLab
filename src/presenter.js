@@ -8,6 +8,7 @@ const divListaProyectos = document.querySelector("#listaDeProyectos");
 const divContenedorProyectos = document.querySelector("#contenedorDeProyectos");
 const divContenedorMetricas = document.querySelector("#contenedorDeMetricas");
 const botonVolverAProyectos = document.querySelector("#botonVolverAProyectos");
+const listaDeMetricas = document.getElementById("listaDeMetricas");
 
 let repositorioDeProyectos = new ProyectoRepositorio();
 let proyectoActual;
@@ -22,7 +23,12 @@ function agregarMetrica() {
   proyectoActual.AnadirMetricas(vCommit, vPruebas, vLineas, vCobertura);
   puntajes.agregarPuntaje(vPruebas, vLineas, vCobertura);
 
-  actualizarTabla();
+  document.getElementById("nro_commit").value = "";
+  document.getElementById("cant_pruebas").value = "";
+  document.getElementById("cant_lineas").value = "";
+  document.getElementById("porc_cobertura").value = "";
+  
+  mostrarTablaMetricas();
 }
 
 function borrarMetrica(index) {
@@ -36,6 +42,43 @@ function obtenerPuntajeCommit(index) {
   return puntajes.obtenerPuntajeCommit(index);
 }
 
+function construirFilaMetrica(metrica, indice) {
+  const fila = document.createElement("tr");
+  metrica.forEach((dato) => {
+    const celda = document.createElement("td");
+    celda.textContent = dato;
+    fila.appendChild(celda);
+  });
+  const celdaAcciones = document.createElement("td");
+  const botonEliminarMetrica = crearBoton("Eliminar Métrica", borrarMetrica, indice);
+  celdaAcciones.appendChild(botonEliminarMetrica);
+  fila.appendChild(celdaAcciones);;
+  return fila;
+}
+
+function construirTablaMetricas() {
+  const tablaMetricas = document.createElement("table");
+  tablaMetricas.innerHTML = `
+    <tr>
+      <th>Número de Commit</th>
+      <th>Cantidad de Pruebas</th>
+      <th>Cantidad de Líneas</th>
+      <th>Porcentaje de Cobertura</th>
+      <th>Acciones</th>
+    </tr>`;
+  proyectoActual.DevolverMetricas().forEach((metrica, indice) => {
+    tablaMetricas.appendChild(construirFilaMetrica(metrica, indice));
+  });
+  return tablaMetricas;
+}
+
+function mostrarTablaMetricas() { 
+  listaDeMetricas.innerHTML = "";
+  const tablaMetricas = construirTablaMetricas();
+  listaDeMetricas.appendChild(tablaMetricas);
+}
+
+/*
 function actualizarTabla() {
   var tabla = document.getElementById("tablaMetricas");
   if (!tabla) {
@@ -102,7 +145,7 @@ function actualizarTabla() {
 
   console.log("Puntaje Total: " + puntajes.obtenerPuntajeTotal());
 }
-
+*/
 
 
 formCrearProyecto.addEventListener("submit", (event) => {
@@ -153,7 +196,9 @@ function mostrarFormularioMetricas(indice) {
   divContenedorMetricas.style.display = 'block';
   proyectoActual = repositorioDeProyectos.proyectos[indice];
 
+  listaDeMetricas.innerHTML = "";
   document.getElementById("botonAgregarMetrica").addEventListener("click", agregarMetrica);
+  mostrarTablaMetricas();
 
   puntajes = new Puntajes();
 }
