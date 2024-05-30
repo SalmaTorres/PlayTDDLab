@@ -58,38 +58,60 @@ function construirFilaMetrica(metrica, indice) {
 }
 
 function construirTablaMetricas() {
-  const tablaMetricas = document.createElement("table");
-  tablaMetricas.innerHTML = `
-    <tr>
-      <th>Número de Commit</th>
-      <th>Cantidad de Pruebas</th>
-      <th>Cantidad de Líneas</th>
-      <th>Porcentaje de Cobertura</th>
-      <th>Acciones</th>
-    </tr>`;
-  proyectoActual.DevolverMetricas().forEach((metrica, indice) => {
-    tablaMetricas.appendChild(construirFilaMetrica(metrica, indice));
-  });
+  let tablaMetricas = document.getElementById("tablaMetricas");
+  if (!tablaMetricas) {
+    tablaMetricas = document.createElement("table");
+    tablaMetricas.id = "tablaMetricas";
+    const header = tablaMetricas.createTHead();
+    const row = header.insertRow();
+    const headers = ["Número de Commit", "Cantidad de Pruebas", "Cantidad de Líneas", "Porcentaje de Cobertura", "Acciones"];
+    headers.forEach(headerText => {
+      const th = document.createElement("th");
+      th.textContent = headerText;
+      row.appendChild(th);
+    });
+    divContenedorMetricas.appendChild(tablaMetricas);
+  }
   return tablaMetricas;
 }
 
 function mostrarTablaMetricas() { 
-  listaDeMetricas.innerHTML = "";
-  const tablaMetricas = construirTablaMetricas();
-  listaDeMetricas.appendChild(tablaMetricas);
+  let tablaMetricas = document.getElementById("tablaMetricas");
+
+  if (!tablaMetricas) {
+    tablaMetricas = construirTablaMetricas();
+    listaDeMetricas.appendChild(tablaMetricas);
+  } else {
+    // Limpiamos la tabla existente antes de agregar las métricas nuevamente
+    limpiarTabla(tablaMetricas);
+  }
+
+  // Creamos una fila para cada métrica y la agregamos a la tabla
+  proyectoActual.DevolverMetricas().forEach((metrica, indice) => {
+    const filaMetrica = construirFilaMetrica(metrica, indice);
+    tablaMetricas.appendChild(filaMetrica);
+  });
 }
 
 function actualizarTabla() {
-  limpiarTabla(document.getElementById("tablaMetricas"));
+  let tablaMetricas = document.getElementById("tablaMetricas");
+  if (!tablaMetricas) {
+    tablaMetricas = construirTablaMetricas();
+    listaDeMetricas.appendChild(tablaMetricas);
+  }
+
+  limpiarTabla(tablaMetricas);
+
   agregarFilasMetricas(
-    document.getElementById("tablaMetricas"),
+    tablaMetricas,
     proyectoActual.DevolverMetricas(),
     obtenerPuntajeCommit,
     puntajes,
     borrarMetrica
   );
+
   actualizarPuntajeTotal(puntajes);
-  actualizarRecomendacionFinal(puntajes, proyectoActual);
+  actualizarRecomendacionFinal(puntajes, proyectoActual, divContenedorProyectos);
 }
 
 

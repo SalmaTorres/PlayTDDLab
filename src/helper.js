@@ -11,8 +11,12 @@ export function crearCeldaConTexto(fila, texto) {
 }
 
 export function limpiarTabla(tabla) {
-  while (tabla.rows.length > 1) {
-    tabla.deleteRow(1);
+  if (tabla) {
+    while (tabla.rows.length > 1) {
+      tabla.deleteRow(1);
+    }
+  } else {
+    console.error("No se encontró la tabla para limpiar.");
   }
 }
 
@@ -44,7 +48,7 @@ export function actualizarPuntajeTotal(puntajes) {
   puntajeTotalParrafo.textContent = "El puntaje total del proyecto es: " + puntajes.obtenerPuntajeTotal();
 }
 
-export function actualizarRecomendacionFinal(puntajes, proyectoActual) {
+export function actualizarRecomendacionFinal(puntajes, proyectoActual, divContenedorProyectos) {
   let mensajeRecomendacion = document.getElementById("mensajeRecomendacion");
   if (!mensajeRecomendacion) {
     mensajeRecomendacion = document.createElement("p");
