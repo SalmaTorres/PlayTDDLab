@@ -3,8 +3,13 @@ export class Proyecto {
     this.titulo = titulo;
     this.descripcion = descripcion;
     this.metricas = [];
+    this.cantidadCommits = 0;
   }
   
+  DevolverCantidadCommits() {
+    return this.cantidadCommits;
+  }
+
   DevolverTitulo() {
     return this.titulo;
   }
@@ -18,11 +23,13 @@ export class Proyecto {
   }
 
   AnadirMetricas(nro_commit, cant_pruebas, cant_lineas, porc_cobertura) {
+    this.cantidadCommits++;
     return this.metricas.push([nro_commit, cant_pruebas, cant_lineas, porc_cobertura]);
     //return this.metricas;
   }
   
   eliminarMetrica(index) {
+    this.cantidadCommits--;
     this.metricas.splice(index, 1);
     return this.metricas;
   }

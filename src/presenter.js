@@ -11,14 +11,8 @@ const botonVolverAProyectos = document.querySelector("#botonVolverAProyectos");
 
 let repositorioDeProyectos = new ProyectoRepositorio();
 let proyectoActual;
-/*
 let puntajes = new Puntajes();
-const vCommit = document.getElementById("nro_commit").value;
-const vPruebas = parseInt(document.getElementById("cant_pruebas").value);
-const vLineas = parseInt(document.getElementById("cant_lineas").value);
-const vCobertura = parseInt(document.getElementById("porc_cobertura").value);
-*/
-/*
+
 function agregarMetrica() {
   const vCommit = document.getElementById("nro_commit").value;
   const vPruebas = parseInt(document.getElementById("cant_pruebas").value);
@@ -26,31 +20,20 @@ function agregarMetrica() {
   const vCobertura = parseInt(document.getElementById("porc_cobertura").value);
 
   proyectoActual.AnadirMetricas(vCommit, vPruebas, vLineas, vCobertura);
-  cantidadCommits++;
+  puntajes.agregarPuntaje(vPruebas, vLineas, vCobertura);
 
-  const puntajePruebas = puntajes.obtenerPuntajePruebas(vPruebas);
-  const puntajeLineas = puntajes.obtenerPuntajeLineas(vLineas);
-  const puntajeCobertura = puntajes.obtenerPuntajeCobertura(vCobertura);
-
-  puntajesPruebas.push(puntajePruebas);
-  puntajesLineas.push(puntajeLineas);
-  puntajesCobertura.push(puntajeCobertura);
-  puntajeTotal += puntajePruebas + puntajeLineas + puntajeCobertura;
   actualizarTabla();
 }
 
 function borrarMetrica(index) {
-  puntajeTotal = puntajeTotal - puntajesPruebas[index] - puntajesLineas[index] - puntajesCobertura[index];
-  puntajesPruebas.splice(index, 1);
-  puntajesLineas.splice(index, 1);
-  puntajesCobertura.splice(index, 1);
-
   proyectoActual.eliminarMetrica(index);
-  cantidadCommits--;
+  puntajes.eliminarPuntaje(index);
+
+  actualizarTabla();
 }
 
 function obtenerPuntajeCommit(index) {
-  return puntajes.obtenerPuntajePorCommit(puntajesPruebas[index], puntajesLineas[index], puntajesCobertura[index]);
+  return puntajes.obtenerPuntajeCommit(index);
 }
 
 function actualizarTabla() {
@@ -106,20 +89,22 @@ function actualizarTabla() {
     puntajeTotalParrafo.id = "puntajeTotalParrafo";
     document.body.appendChild(puntajeTotalParrafo);
   }
-  puntajeTotalParrafo.textContent = "El puntaje total del proyecto es: " + puntajeTotal;
+  puntajeTotalParrafo.textContent = "El puntaje total del proyecto es: " + puntajes.obtenerPuntajeTotal();
 
   let mensajeRecomendacion = document.getElementById("mensajeRecomendacion");
   if (!mensajeRecomendacion) {
     mensajeRecomendacion = document.createElement("p");
     mensajeRecomendacion.id = "mensajeRecomendacion";
-    divProyectos.appendChild(mensajeRecomendacion);
+    divContenedorProyectos.appendChild(mensajeRecomendacion);
   }
-  let recomendacionFinal = puntajes.DevolverRecomendacionFinal(puntajeTotal, cantidadCommits);
+  let recomendacionFinal = puntajes.DevolverRecomendacionFinal(puntajes.obtenerPuntajeTotal(), proyectoActual.DevolverCantidadCommits());
   mensajeRecomendacion.textContent = "Recomendacion Final del proyecto: " + recomendacionFinal;
 
-  console.log("Puntaje Total: " + puntajeTotal);
+  console.log("Puntaje Total: " + puntajes.obtenerPuntajeTotal());
 }
-*/
+
+
+
 formCrearProyecto.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -167,6 +152,10 @@ function mostrarFormularioMetricas(indice) {
   divContenedorProyectos.style.display = 'none';
   divContenedorMetricas.style.display = 'block';
   proyectoActual = repositorioDeProyectos.proyectos[indice];
+
+  document.getElementById("botonAgregarMetrica").addEventListener("click", agregarMetrica);
+
+  puntajes = new Puntajes();
 }
 
 botonVolverAProyectos.addEventListener("click", () => {

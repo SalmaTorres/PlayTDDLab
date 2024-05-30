@@ -1,4 +1,37 @@
 export class Puntajes {
+  constructor() {
+    this.puntajesPruebas = [];
+    this.puntajesLineas = [];
+    this.puntajesCobertura = [];
+    this.puntajeTotal = 0;
+  }
+
+  agregarPuntaje(vPruebas, vLineas, vCobertura) {
+    const puntajePruebas = this.obtenerPuntajePruebas(vPruebas);
+    const puntajeLineas = this.obtenerPuntajeLineas(vLineas);
+    const puntajeCobertura = this.obtenerPuntajeCobertura(vCobertura);
+
+    this.puntajesPruebas.push(puntajePruebas);
+    this.puntajesLineas.push(puntajeLineas);
+    this.puntajesCobertura.push(puntajeCobertura);
+    this.puntajeTotal += puntajePruebas + puntajeLineas + puntajeCobertura;
+  }
+
+  eliminarPuntaje(index) {
+    this.puntajeTotal -= this.puntajesPruebas[index] + this.puntajesLineas[index] + this.puntajesCobertura[index];
+    this.puntajesPruebas.splice(index, 1);
+    this.puntajesLineas.splice(index, 1);
+    this.puntajesCobertura.splice(index, 1);
+  }
+
+  obtenerPuntajeCommit(index) {
+    return this.puntajesPruebas[index] + this.puntajesLineas[index] + this.puntajesCobertura[index];
+  }
+
+  obtenerPuntajeTotal() {
+    return this.puntajeTotal;
+  }
+
     obtenerPuntajePruebas(cantidadPruebasPasadas) {
       return cantidadPruebasPasadas === 0 ? 0 : cantidadPruebasPasadas;
     }
