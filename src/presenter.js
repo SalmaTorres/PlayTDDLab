@@ -14,32 +14,6 @@ let puntajes = new Puntajes();
 let proyectoActual;
 
 /*
-let cantidadCommits = 0;
-let puntajeTotal = 0;
-let puntajesPruebas = [];
-let puntajesLineas = [];
-let puntajesCobertura = [];*/
-/*
-function mostrarFormulario() {
-  const form_metricas = document.createElement("div");
-  form_metricas.id = "formulario";
-  form_metricas.innerHTML = `
-    <form id="metricasForm">
-      <label for="nro_commit">Número de Commit:</label>
-      <input type="number" id="nro_commit" name="nro_commit"><br><br>
-      <label for="cant_pruebas">Cantidad de Pruebas:</label>
-      <input type="number" id="cant_pruebas" name="cant_pruebas"><br><br>
-      <label for="cant_lineas">Cantidad de Líneas:</label>
-      <input type="number" id="cant_lineas" name="cant_lineas"><br><br>
-      <label for="porc_cobertura">Porcentaje de Cobertura:</label>
-      <input type="number" id="porc_cobertura" name="porc_cobertura"><br><br>
-      <button type="button" id="agregarMetrica">Agregar</button>
-    </form>
-  `;
-  document.body.appendChild(form_metricas);
-  document.getElementById("agregarMetrica").addEventListener("click", agregarMetrica);
-}
-
 function agregarMetrica() {
   const vCommit = document.getElementById("nro_commit").value;
   const vPruebas = parseInt(document.getElementById("cant_pruebas").value);
@@ -179,8 +153,13 @@ function mostrarProyectos() {
 
 function eliminarProyecto(event, index) {
   const titulo = proyectosRepositorio.proyectos[index].DevolverTitulo();
-  proyectosRepositorio.EliminarProyectoPorTitulo(titulo);
-  mostrarProyectos();
+  const confirmacion = confirm(`¿Estás seguro de eliminar el proyecto "${titulo}"?`);
+  if (confirmacion) {
+    proyectosRepositorio.EliminarProyectoPorTitulo(titulo);
+    mostrarProyectos();
+  } else {
+    return;
+  }
 }
 
 function mostrarFormularioMetricas(event, index) {
