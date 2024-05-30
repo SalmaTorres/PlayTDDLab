@@ -29,7 +29,7 @@ function agregarMetrica() {
   document.getElementById("cant_lineas").value = "";
   document.getElementById("porc_cobertura").value = "";
   
-  mostrarTablaMetricas();
+  actualizarTabla();
 }
 
 function borrarMetrica(index) {
@@ -64,7 +64,7 @@ function construirTablaMetricas() {
     tablaMetricas.id = "tablaMetricas";
     const header = tablaMetricas.createTHead();
     const row = header.insertRow();
-    const headers = ["Número de Commit", "Cantidad de Pruebas", "Cantidad de Líneas", "Porcentaje de Cobertura", "Acciones"];
+    const headers = ["Número de Commit", "Cantidad de Pruebas", "Cantidad de Líneas", "Porcentaje de Cobertura", "Puntaje por Commit", "Recomendación por Commit", "Acciones"];
     headers.forEach(headerText => {
       const th = document.createElement("th");
       th.textContent = headerText;
@@ -82,11 +82,10 @@ function mostrarTablaMetricas() {
     tablaMetricas = construirTablaMetricas();
     listaDeMetricas.appendChild(tablaMetricas);
   } else {
-    // Limpiamos la tabla existente antes de agregar las métricas nuevamente
+
     limpiarTabla(tablaMetricas);
   }
 
-  // Creamos una fila para cada métrica y la agregamos a la tabla
   proyectoActual.DevolverMetricas().forEach((metrica, indice) => {
     const filaMetrica = construirFilaMetrica(metrica, indice);
     tablaMetricas.appendChild(filaMetrica);
