@@ -14,7 +14,7 @@ export class Puntajes {
     this.puntajesPruebas.push(puntajePruebas);
     this.puntajesLineas.push(puntajeLineas);
     this.puntajesCobertura.push(puntajeCobertura);
-    this.puntajeTotal += puntajePruebas + puntajeLineas + puntajeCobertura;
+    this.puntajeTotal = this.calcularPuntajeTotal();
   }
 
   eliminarPuntaje(index) {
@@ -32,19 +32,27 @@ export class Puntajes {
     return this.puntajeTotal;
   }
 
-    obtenerPuntajePruebas(cantidadPruebasPasadas) {
-      return cantidadPruebasPasadas === 0 ? 0 : cantidadPruebasPasadas;
+  calcularPuntajeTotal() {
+    let total = 0;
+    for (let i = 0; i < this.puntajesPruebas.length; i++) {
+      total += this.puntajesPruebas[i] + this.puntajesLineas[i] + this.puntajesCobertura[i];
     }
+    return total;
+  }
+
+   obtenerPuntajePruebas(cantidadPruebasPasadas) {
+     return cantidadPruebasPasadas === 0 ? 0 : cantidadPruebasPasadas;
+  }
   
-    obtenerPuntajeLineas(cantidadLineasModificadas) {
-      if (cantidadLineasModificadas < 10) {
-        return 10;
-      } else if (cantidadLineasModificadas >= 10 && cantidadLineasModificadas < 20) {
-        return 5;
-      } else {
-        return 0;
-      }
+  obtenerPuntajeLineas(cantidadLineasModificadas) {
+    if (cantidadLineasModificadas < 10) {
+      return 10;
+     } else if (cantidadLineasModificadas >= 10 && cantidadLineasModificadas < 20) {
+       return 5;
+    } else {
+       return 0;
     }
+   }
   
     obtenerPuntajeCobertura(porcentajeCobertura) {
       if (porcentajeCobertura >= 80) {

@@ -31,6 +31,11 @@ describe("PlayTDD", () => {
     proyecto.AnadirMetricas(1, 10, 100, 90);
     expect(proyecto.DevolverMetricas()).toEqual([[1, 10, 100, 90]]);
   });
+
+it("Deberia devolver la cantidad de commits por defecto (0)", () => {
+    expect(proyecto.DevolverCantidadCommits()).toEqual(0);
+  });
+
   it("Debería agregar los datos al final de una matriz no vacía", () => {
     proyecto.AnadirMetricas(1, 10, 100, 90);
     proyecto.AnadirMetricas(2, 20, 200, 80);
@@ -47,6 +52,34 @@ describe("PlayTDD", () => {
     expect(proyecto.DevolverMetricas().length).toEqual(1);
     expect(proyecto.DevolverMetricas()).toEqual([[2, 20, 200, 0]]); 
 });
+
+it("Debería agregar un puntaje", () => {
+  puntajes.agregarPuntaje(1, 10, 80);
+  expect(puntajes.puntajesPruebas).toEqual([1]);
+  expect(puntajes.puntajesLineas).toEqual([5]);
+  expect(puntajes.puntajesCobertura).toEqual([10]);
+});
+
+it("Debería eliminar un puntaje correctamente", () => {
+  puntajes.agregarPuntaje(1, 10, 80);
+  puntajes.agregarPuntaje(2, 20, 70);
+  puntajes.eliminarPuntaje(0);
+  expect(puntajes.puntajesPruebas).toEqual([2]);
+  expect(puntajes.puntajesLineas).toEqual([0]);
+  expect(puntajes.puntajesCobertura).toEqual([5]);
+});
+
+it("Debería obtener el puntaje total correctamente", () => {
+  puntajes.agregarPuntaje(1, 10, 80);
+  puntajes.agregarPuntaje(2, 20, 70);
+  expect(puntajes.obtenerPuntajeTotal()).toEqual(23);
+});
+
+it("Debería obtener el puntaje de un commit correctamente", () => {
+  puntajes.agregarPuntaje(1, 10, 80);
+  expect(puntajes.obtenerPuntajeCommit(0)).toEqual(16);
+});
+
 
 it("Debería asignar un puntaje de 0 para una cantidad de 0 pruebas pasadas", () => {
   expect(puntajes.obtenerPuntajePruebas(0)).toEqual(0); 
