@@ -54,47 +54,63 @@ it("Deberia devolver la cantidad de commits por defecto (0)", () => {
 });
 
 it("Debería agregar un puntaje", () => {
-  puntajes.agregarPuntaje(100, 10, 80);
+  puntajes.agregarPuntaje(1, 10, 80);
   expect(puntajes.puntajesPruebas).toEqual([20]);
   expect(puntajes.puntajesLineas).toEqual([5]);
   expect(puntajes.puntajesCobertura).toEqual([10]);
 });
 
 it("Debería eliminar un puntaje correctamente", () => {
-  puntajes.agregarPuntaje(100, 10, 80);
-  puntajes.agregarPuntaje(100, 20, 70);
+  puntajes.agregarPuntaje(0, 10, 80);
+  puntajes.agregarPuntaje(0, 20, 70);
   puntajes.eliminarPuntaje(0);
-  expect(puntajes.puntajesPruebas).toEqual([20]);
+  expect(puntajes.puntajesPruebas).toEqual([8]);
   expect(puntajes.puntajesLineas).toEqual([0]);
   expect(puntajes.puntajesCobertura).toEqual([5]);
 });
 
+it("Debería eliminar un puntaje de Prueba correctamente", () => {
+  puntajes.agregarPuntaje(5, 10, 80);
+  puntajes.eliminarPuntaje(0);
+  expect(puntajes.puntajesPruebas).toEqual([]);
+});
+
 it("Debería obtener el puntaje total correctamente", () => {
-  puntajes.agregarPuntaje(100, 10, 80);
-  puntajes.agregarPuntaje(100, 20, 70);
-  expect(puntajes.obtenerPuntajeTotal()).toEqual(28);
+  puntajes.agregarPuntaje(1, 10, 80);
+  puntajes.agregarPuntaje(1, 20, 70);
+  expect(puntajes.obtenerPuntajeTotal()).toEqual(40);
+});
+
+it("Debería obtener el puntaje total correctamente", () => {
+  puntajes.agregarPuntaje(1, 10, 80);
+  puntajes.agregarPuntaje(1, 20, 70);
+  puntajes.agregarPuntaje(1, 20, 70);
+  puntajes.agregarPuntaje(1, 20, 70);
+  puntajes.agregarPuntaje(0, 20, 70);
+  expect(puntajes.obtenerPuntajeTotal()).toEqual(51);
+});
+
+it("Debería obtener el puntaje total correctamente", () => {
+  puntajes.agregarPuntaje(1, 10, 80);
+  puntajes.agregarPuntaje(1, 20, 70);
+  puntajes.agregarPuntaje(1, 20, 70);
+  puntajes.agregarPuntaje(0, 20, 70);
+  puntajes.agregarPuntaje(0, 20, 70);
+  expect(puntajes.obtenerPuntajeTotal()).toEqual(47);
 });
 
 it("Debería obtener el puntaje de un commit correctamente", () => {
-  puntajes.agregarPuntaje(100, 10, 80);
-  expect(puntajes.obtenerPuntajeCommit(0)).toEqual(35);
+  puntajes.agregarPuntaje(0, 10, 80);
+  expect(puntajes.obtenerPuntajeCommit(0)).toEqual(23);
 });
 
 
-it("Debería asignar un puntaje de 20 para un porcentaje de 100 pruebas pasadas", () => {
-  expect(puntajes.obtenerPuntajePruebas(100)).toEqual(20); 
+it("Debería asignar un puntaje de 20 para una cantidad de 1 pruebas pasadas", () => {
+  expect(puntajes.obtenerPuntajePruebas(1)).toEqual(20); 
 });
 
-it("Debería asignar un puntaje de 16 para una cantidad de 98% pruebas pasadas", () => {
-  expect(puntajes.obtenerPuntajePruebas(98)).toEqual(16);
-});
-
-it("Debería asignar un puntaje de 12 para una cantidad de 61% pruebas pasadas", () => {
-  expect(puntajes.obtenerPuntajePruebas(61)).toEqual(12);
-});
-  
-it("Debería asignar un puntaje de 8 para una cantidad de <60% pruebas pasadas", () => {
-  expect(puntajes.obtenerPuntajePruebas(59)).toEqual(8);
+it("Debería asignar un puntaje de 8 para una cantidad de 0 pruebas pasadas", () => {
+  expect(puntajes.obtenerPuntajePruebas(0)).toEqual(8);
 });
 
 it("Debería asignar un puntaje de 10 para una cantidad de <10 lineas modificadas", () => {
