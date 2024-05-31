@@ -140,10 +140,16 @@ function mostrarProyectos() {
     informacionProyecto.dataset.index = indice;
     const botonEliminar = crearBoton("Eliminar", eliminarProyecto, indice);
     const botonIrAMetricas = crearBoton("Ir a Métricas", mostrarFormularioMetricas, indice);
+    const botonEditar = crearBoton("Editar", editarProyecto, indice);
     informacionProyecto.appendChild(botonEliminar);
     informacionProyecto.appendChild(botonIrAMetricas);
+    informacionProyecto.appendChild(botonEditar);
     divListaProyectos.appendChild(informacionProyecto);
   });
+}
+
+function editarProyecto(indice) {
+  
 }
 
 function eliminarProyecto(indice) {
