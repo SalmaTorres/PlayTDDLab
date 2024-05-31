@@ -149,7 +149,17 @@ function mostrarProyectos() {
 }
 
 function editarProyecto(indice) {
-  
+  const nuevoTitulo = prompt("Ingrese el nuevo título del proyecto:");
+  const nuevaDescripcion = prompt("Ingrese la nueva descripción del proyecto:");
+
+  if (nuevoTitulo && nuevaDescripcion) {
+    const proyecto = repositorioDeProyectos.proyectos[indice];
+    proyecto.titulo = nuevoTitulo;
+    proyecto.descripcion = nuevaDescripcion;
+    mostrarProyectos();
+  } else {
+    alert("Debe ingresar un título y una descripción.");
+  }
 }
 
 function eliminarProyecto(indice) {
