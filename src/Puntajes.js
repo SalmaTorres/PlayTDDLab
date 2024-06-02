@@ -64,20 +64,12 @@ export class Puntajes {
     total += puntajePorcentajePruebas;
 
     let PuntajeLineas=0;
-    let sumaPuntajeLineas=0;
-    for (let i = 0; i < this.puntajesLineas.length; i++) {
-      sumaPuntajeLineas += this.puntajesLineas[i];
-    }
     let promedioPuntajeLineas=0;
-    promedioPuntajeLineas=sumaPuntajeLineas/this.puntajesLineas.length;
+    promedioPuntajeLineas=this.obtenerPromedioPuntajes(this.puntajesLineas);
     PuntajeLineas=this.obtenerPuntajeLineas(promedioPuntajeLineas);
     total += PuntajeLineas;
 
-    let PuntajeCobertura=0;
-    let promedioPuntajeCobertura=0;
-    promedioPuntajeCobertura=this.obtenerPromedioPuntajes(this.puntajesCobertura);
-    PuntajeCobertura=this.obtenerPuntajeCobertura(promedioPuntajeCobertura);
-    total += PuntajeCobertura;
+    total += this.calcularPuntajeTotalCobertura();
 
     return total;
   }
@@ -123,6 +115,12 @@ export class Puntajes {
         return 8;
       }
     }
+
+    calcularPuntajeTotalCobertura() {
+      const promedioPuntajeCobertura = this.obtenerPromedioPuntajes(this.puntajesCobertura);
+      const puntajeCobertura = this.obtenerPuntajeCobertura(promedioPuntajeCobertura);
+      return puntajeCobertura;
+  }
   
     obtenerPuntajePorCommit(puntajePruebas, puntajeLineas, puntajeCobertura) {
       return puntajePruebas + puntajeLineas + puntajeCobertura;
