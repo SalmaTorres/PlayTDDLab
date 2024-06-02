@@ -89,13 +89,9 @@ export class Puntajes {
     }
    }
   
-   
-
     obtenerPuntajeCobertura(porcentajeCobertura) {
-      if (porcentajeCobertura >= 80) {
-        return 10;
-      } else if (porcentajeCobertura >= 50 && porcentajeCobertura < 80) {
-        return 5;
+      if (porcentajeCobertura > 90) {
+        return 20;
       } else {
         return 0;
       }
