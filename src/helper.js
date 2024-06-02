@@ -39,13 +39,32 @@ export function agregarFilasMetricas(tabla, metricas, obtenerPuntajeCommit, punt
 }
 
 export function actualizarPuntajeTotal(puntajes) {
-  let puntajeTotalParrafo = document.getElementById("puntajeTotalParrafo");
-  if (!puntajeTotalParrafo) {
-    puntajeTotalParrafo = document.createElement("p");
-    puntajeTotalParrafo.id = "puntajeTotalParrafo";
-    document.body.appendChild(puntajeTotalParrafo);
+  let puntajeContenedor = document.getElementById("puntajeContenedor");
+  if (!puntajeContenedor) {
+    puntajeContenedor = document.createElement("div");
+    puntajeContenedor.id = "puntajeContenedor";
+    document.body.appendChild(puntajeContenedor);
+  } else {
+    puntajeContenedor.innerHTML = "";
   }
-  puntajeTotalParrafo.textContent = "El puntaje total del proyecto es: " + puntajes.obtenerPuntajeTotal();
+
+  const categorias = [
+    { nombre: "Cantidad de Pruebas por Commit:  ", porcentaje: 20, puntaje: puntajes.cantidadPruebas },
+    { nombre: "Líneas de Código por Commit", porcentaje: 20, puntaje: puntajes.lineasCodigo },
+    { nombre: "Porcentaje de Cobertura de Pruebas por Commit", porcentaje: 20, puntaje: puntajes.coberturaPruebas },
+    { nombre: "Frecuencia de Commits", porcentaje: 20, puntaje: puntajes.frecuenciaCommits },
+    { nombre: "Complejidad de Código", porcentaje: 20, puntaje: puntajes.complejidadCodigo }
+  ];
+  
+  categorias.forEach(categoria => {
+    const parrafo = document.createElement("p");
+    //const calificacionTexto = obtenerCalificacionTexto(categoria.puntaje);
+    parrafo.textContent = `${categoria.nombre} (${categoria.porcentaje}%): ${categoria.puntaje} puntos`; //(${calificacionTexto})`;
+    puntajeContenedor.appendChild(parrafo);
+  });
+  const puntajeTotalParrafo = document.createElement("p");
+  puntajeTotalParrafo.textContent = "Puntuación Total: " + puntajes.obtenerPuntajeTotal() + " puntos";
+  puntajeContenedor.appendChild(puntajeTotalParrafo);
 }
 
 export function actualizarRecomendacionFinal(puntajes, proyectoActual, divContenedorProyectos) {
