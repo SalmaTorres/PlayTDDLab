@@ -81,7 +81,7 @@ export class Puntajes {
     if (cantidadLineasModificadas < 20) {
       return 20;
      }else {
-       return 0;
+       return 16;
     }
    }
   
