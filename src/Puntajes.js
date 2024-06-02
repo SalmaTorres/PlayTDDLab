@@ -49,9 +49,6 @@ export class Puntajes {
 
   calcularPuntajeTotal() {
     let total = 0;
-    for (let i = 0; i < this.puntajesPruebas.length; i++) {
-      total += this.puntajesCobertura[i];
-    }
 
     const porcentajeCommitsConPruebas = (this.commitsConPruebas / this.totalCommits) * 100;
     let puntajePorcentajePruebas = 0;
@@ -75,6 +72,16 @@ export class Puntajes {
     promedioPuntajeLineas=sumaPuntajeLineas/this.puntajesLineas.length;
     PuntajeLineas=this.obtenerPuntajeLineas(promedioPuntajeLineas);
     total += PuntajeLineas;
+
+    let PuntajeCobertura=0;
+    let sumaPuntajeCobertura=0;
+    for (let i = 0; i < this.puntajesCobertura.length; i++) {
+      sumaPuntajeCobertura += this.puntajesCobertura[i];
+    }
+    let promedioPuntajeCobertura=0;
+    promedioPuntajeCobertura=sumaPuntajeCobertura/this.puntajesCobertura.length;
+    PuntajeCobertura=this.obtenerPuntajeCobertura(promedioPuntajeCobertura);
+    total += PuntajeCobertura;
 
     return total;
   }
