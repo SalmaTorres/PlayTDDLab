@@ -82,8 +82,10 @@ export class Puntajes {
       return 20;
      }else if (cantidadLineasModificadas < 40) {
        return 16;
-    } else {
+    } else if (cantidadLineasModificadas < 60){
       return 12;
+    } else {
+      return 8
     }
    }
   
