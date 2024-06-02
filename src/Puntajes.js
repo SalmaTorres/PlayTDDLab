@@ -49,20 +49,8 @@ export class Puntajes {
 
   calcularPuntajeTotal() {
     let total = 0;
-
-    const porcentajeCommitsConPruebas = (this.commitsConPruebas / this.totalCommits) * 100;
-    let puntajePorcentajePruebas = 0;
-    if (porcentajeCommitsConPruebas >= 100) {
-      puntajePorcentajePruebas = 20;
-    } else if (porcentajeCommitsConPruebas >= 80) {
-      puntajePorcentajePruebas = 16;
-    } else if (porcentajeCommitsConPruebas >= 60) {
-      puntajePorcentajePruebas = 12;
-    } else {
-      puntajePorcentajePruebas = 8;
-    }
-
-    total += puntajePorcentajePruebas;
+    
+    total += this.calcularPuntajePruebasTotal();
 
     total += this.calcularPuntajeTotalLineas();
 
@@ -79,6 +67,19 @@ export class Puntajes {
     let promedioPuntaje=0;
     promedioPuntaje=sumaPuntajes/vectorPuntajes.length;
     return promedioPuntaje;
+  }
+
+  calcularPuntajePruebasTotal() {
+    const porcentajeCommitsConPruebas = (this.commitsConPruebas / this.totalCommits) * 100;
+    if (porcentajeCommitsConPruebas >= 100) {
+      return 20;
+    } else if (porcentajeCommitsConPruebas >= 80) {
+      return 16;
+    } else if (porcentajeCommitsConPruebas >= 60) {
+      return 12;
+    } else {
+      return 8;
+    }
   }
 
   obtenerPuntajePruebas(vPruebas) {
