@@ -78,15 +78,15 @@ export class Puntajes {
   }
   
   obtenerPuntajeLineas(cantidadLineasModificadas) {
-    if (cantidadLineasModificadas < 10) {
-      return 10;
-     } else if (cantidadLineasModificadas >= 10 && cantidadLineasModificadas < 20) {
-       return 5;
-    } else {
+    if (cantidadLineasModificadas < 20) {
+      return 20;
+     }else {
        return 0;
     }
    }
   
+   
+
     obtenerPuntajeCobertura(porcentajeCobertura) {
       if (porcentajeCobertura >= 80) {
         return 10;
