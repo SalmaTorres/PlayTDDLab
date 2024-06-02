@@ -125,13 +125,6 @@ formCrearProyecto.addEventListener("submit", (event) => {
   inputDescripcionProyecto.value = "";
 });
 
-function crearBoton(texto, manejador, indice) {
-  const boton = document.createElement("button");
-  boton.textContent = texto;
-  boton.addEventListener("click", (event) => manejador(indice));
-  return boton;
-}
-
 function mostrarProyectos() {
   divListaProyectos.innerHTML = "";
   repositorioDeProyectos.proyectos.forEach((proyecto, indice) => {
