@@ -141,6 +141,10 @@ it("Debería asignar un puntaje de 12 para una cobertura >=70%", () => {
   expect(puntajes.obtenerPuntajeCobertura(77)).toEqual(12); 
 });
 
+it("Debería asignar un puntaje de 8 para una cobertura <70%", () => {
+  expect(puntajes.obtenerPuntajeCobertura(60)).toEqual(8); 
+});
+
 it("Debería asignar un puntaje de 0 para el puntaje por Commit", () => {
   expect(puntajes.obtenerPuntajePorCommit(0,0,0)).toEqual(0);
 });

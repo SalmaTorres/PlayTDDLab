@@ -94,8 +94,10 @@ export class Puntajes {
         return 20;
       } else if (porcentajeCobertura >= 80) {
         return 16;
-      } else {
+      } else if (porcentajeCobertura >= 70){
         return 12;
+      } else {
+        return 8;
       }
     }
   
