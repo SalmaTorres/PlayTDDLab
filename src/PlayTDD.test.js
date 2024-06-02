@@ -78,7 +78,7 @@ it("Debería eliminar un puntaje de Prueba correctamente", () => {
 it("Debería obtener el puntaje total correctamente", () => {
   puntajes.agregarPuntaje(1, 10, 80);
   puntajes.agregarPuntaje(1, 20, 70);
-  expect(puntajes.obtenerPuntajeTotal()).toEqual(56);
+  expect(puntajes.obtenerPuntajeTotal()).toEqual(88);
 });
 
 it("Debería obtener el puntaje total correctamente", () => {
@@ -87,7 +87,7 @@ it("Debería obtener el puntaje total correctamente", () => {
   puntajes.agregarPuntaje(1, 20, 70);
   puntajes.agregarPuntaje(1, 20, 70);
   puntajes.agregarPuntaje(0, 20, 70);
-  expect(puntajes.obtenerPuntajeTotal()).toEqual(100);
+  expect(puntajes.obtenerPuntajeTotal()).toEqual(180);
 });
 
 it("Debería obtener el puntaje total correctamente", () => {
@@ -96,12 +96,12 @@ it("Debería obtener el puntaje total correctamente", () => {
   puntajes.agregarPuntaje(1, 20, 70);
   puntajes.agregarPuntaje(0, 20, 70);
   puntajes.agregarPuntaje(0, 20, 70);
-  expect(puntajes.obtenerPuntajeTotal()).toEqual(96);
+  expect(puntajes.obtenerPuntajeTotal()).toEqual(176);
 });
 
 it("Debería obtener el puntaje de un commit correctamente", () => {
   puntajes.agregarPuntaje(0, 10, 80);
-  expect(puntajes.obtenerPuntajeCommit(0)).toEqual(28);
+  expect(puntajes.obtenerPuntajeCommit(0)).toEqual(44);
 });
 
 
@@ -131,6 +131,10 @@ it("Debería asignar un puntaje de 8 para una cantidad de >60 lineas modificadas
 
 it("Debería asignar un puntaje de 20 para una cobertura >90%", () => {
   expect(puntajes.obtenerPuntajeCobertura(97)).toEqual(20); 
+});
+
+it("Debería asignar un puntaje de 16 para una cobertura >80%", () => {
+  expect(puntajes.obtenerPuntajeCobertura(88)).toEqual(16); 
 });
 
 it("Debería asignar un puntaje de 0 para el puntaje por Commit", () => {
