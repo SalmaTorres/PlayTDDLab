@@ -74,16 +74,22 @@ export class Puntajes {
     total += PuntajeLineas;
 
     let PuntajeCobertura=0;
-    let sumaPuntajeCobertura=0;
-    for (let i = 0; i < this.puntajesCobertura.length; i++) {
-      sumaPuntajeCobertura += this.puntajesCobertura[i];
-    }
     let promedioPuntajeCobertura=0;
-    promedioPuntajeCobertura=sumaPuntajeCobertura/this.puntajesCobertura.length;
+    promedioPuntajeCobertura=this.obtenerPromedioPuntajes(this.puntajesCobertura);
     PuntajeCobertura=this.obtenerPuntajeCobertura(promedioPuntajeCobertura);
     total += PuntajeCobertura;
 
     return total;
+  }
+
+  obtenerPromedioPuntajes(vectorPuntajes){
+    let sumaPuntajes=0;
+    for (let i = 0; i < vectorPuntajes.length; i++) {
+      sumaPuntajes += vectorPuntajes[i];
+    }
+    let promedioPuntaje=0;
+    promedioPuntaje=sumaPuntajes/vectorPuntajes.length;
+    return promedioPuntaje;
   }
 
   obtenerPuntajePruebas(vPruebas) {
