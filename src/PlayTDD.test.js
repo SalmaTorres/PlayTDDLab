@@ -121,6 +121,10 @@ it("Debería asignar un puntaje de 16 para una cantidad de <40 lineas modificada
   expect(puntajes.obtenerPuntajeLineas(34)).toEqual(16); 
 });
 
+it("Debería asignar un puntaje de 16 para una cantidad de <60 lineas modificadas", () => {
+  expect(puntajes.obtenerPuntajeLineas(55)).toEqual(12); 
+});
+
 it("Debería asignar un puntaje de 10 para una cobertura >=80%", () => {
   expect(puntajes.obtenerPuntajeCobertura(81)).toEqual(10); 
 });

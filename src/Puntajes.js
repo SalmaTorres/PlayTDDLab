@@ -80,8 +80,10 @@ export class Puntajes {
   obtenerPuntajeLineas(cantidadLineasModificadas) {
     if (cantidadLineasModificadas < 20) {
       return 20;
-     }else {
+     }else if (cantidadLineasModificadas < 40) {
        return 16;
+    } else {
+      return 12;
     }
    }
   
