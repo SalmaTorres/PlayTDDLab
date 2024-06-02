@@ -92,8 +92,10 @@ export class Puntajes {
     obtenerPuntajeCobertura(porcentajeCobertura) {
       if (porcentajeCobertura > 90) {
         return 20;
-      } else {
+      } else if (porcentajeCobertura >= 80) {
         return 16;
+      } else {
+        return 12;
       }
     }
   
