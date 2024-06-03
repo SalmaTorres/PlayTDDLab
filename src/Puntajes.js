@@ -156,13 +156,17 @@ export class Puntajes {
           return 20;
         }
         else if(tipoComplejidadCodigo=="bueno")
-          {
-            return 16;
+        {
+          return 16;
+        }
+        else if(tipoComplejidadCodigo=="regular")
+        {
+           return 12;
+        }
+        else if(tipoComplejidadCodigo=="deficiente")
+           {
+             return 8;
           }
-          else if(tipoComplejidadCodigo=="regular")
-            {
-              return 12;
-            }
     }
     DevolverRecomendacionPorCommit(puntajeCommit) {
         let recomendacion = "recomendacion"
