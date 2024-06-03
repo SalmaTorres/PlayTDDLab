@@ -216,5 +216,7 @@ it("dado un vector de fechas devuelve la suma de la diferencia de días entre co
 it("si mi cantidad de dias promedio entre commits es menor que 2 recibe un puntaje de 20", () => {
   expect(puntajes.obtenerPuntajeFrecuenciaCommits(2)).toEqual(20);
 });
-
+it("si mi cantidad de dias promedio entre commits es mayor a 2 y menor o igual a 3 recibe un puntaje de 16", () => {
+  expect(puntajes.obtenerPuntajeFrecuenciaCommits(3)).toEqual(16);
+});
 });
