@@ -211,4 +211,7 @@ it("En caso de haberse elegido la frecuencia de commit como deficiente que quier
 it("si la complejidad del codigo es excelente, es decir es con baja complejidad en cambios, deberia tener una puntuacion de 20", () => {
   expect(puntajes.obtenerPuntajeComplejidad("excelente")).toEqual(20);
 });
+it("si la complejidad del codigo es buena, es decir la complejidad del codigo es moderada, deberia tener una puntuacion de 16", () => {
+  expect(puntajes.obtenerPuntajeComplejidad("bueno")).toEqual(16);
+});
 });

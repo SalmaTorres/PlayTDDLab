@@ -155,6 +155,10 @@ export class Puntajes {
         {
           return 20;
         }
+        else if(tipoComplejidadCodigo=="bueno")
+          {
+            return 16;
+          }
     }
     DevolverRecomendacionPorCommit(puntajeCommit) {
         let recomendacion = "recomendacion"
