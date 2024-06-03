@@ -196,20 +196,6 @@ it("Debería devolver el mensaje de recomendacion final si tuvo al menos un 50% 
 it("Debería devolver el mensaje de recomendacion final si tuvo menos de 50% de eficacia de TDD en todo el proyecto", () => {
   expect(puntajes.DevolverRecomendacionFinal(40,4)).toEqual("No aplicaste TDD de manera adecuada, hay mucho espacio para mejorar, puede que las pruebas no esten en verde, que escribas lineas de codigo inecesarias y muy genericas desde el principio y tengas muy bajo porcentaje de cobertura, necesitas practica");
 });
-
-it("si la complejidad del codigo es excelente, es decir es con baja complejidad en cambios, deberia tener una puntuacion de 20", () => {
-  expect(puntajes.obtenerPuntajeComplejidad("excelente")).toEqual(20);
-});
-it("si la complejidad del codigo es buena, es decir la complejidad del codigo es moderada, deberia tener una puntuacion de 16", () => {
-  expect(puntajes.obtenerPuntajeComplejidad("bueno")).toEqual(16);
-});
-it("si la complejidad del codigo es regular, es decir la complejidad del codigo es alta, deberia tener una puntuacion de 12", () => {
-  expect(puntajes.obtenerPuntajeComplejidad("regular")).toEqual(12);
-});
-
-it("si la complejidad del codigo es deficiente, es decir la complejidad del codigo es muy alta deberia tener una puntuacion de 8", () => {
-  expect(puntajes.obtenerPuntajeComplejidad("deficiente")).toEqual(8);
-});
 it("dado un vector de fechas devuelve la suma de la diferencia de días entre commits", () => {
   expect(puntajes.obtenerSumaDiferenciasEnDias(["12/04/2024-08:24", "13/04/2024-09:45", "14/04/2024-09:45", "15/04/2024-09:45"])).toEqual(3);
 });
@@ -228,10 +214,11 @@ it("si mi cantidad de dias promedio entre commits es mayor a 3 y menor o igual a
 it("si mi cantidad de dias promedio entre commits es mayor a 4 recibe un puntaje de 8", () => {
   expect(puntajes.obtenerPuntajeFrecuenciaCommits(6)).toEqual(8);
 });
-
 it("dada un array de fechas deberia devolver el promedio", () => {
   expect(puntajes.calcularPromedioPuntajeComplejidad(["excelente", "regular", "deficiente", "buena"])).toEqual(14);
 });
-
+it("si el promedio de los puntajes es mayor a 20 se le da el puntaje maximo que es 20", () => {
+  expect(puntajes.obtenerPuntajeComplejidad(25)).toEqual(20);
+});
 
 });

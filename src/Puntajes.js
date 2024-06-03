@@ -191,24 +191,12 @@ export class Puntajes {
               return 8;
             }
     }
-    obtenerPuntajeComplejidad(tipoComplejidadCodigo)
+    obtenerPuntajeComplejidad(promedioPuntajeComplejidad)
     {
-      if(tipoComplejidadCodigo=="excelente")
+      if(promedioPuntajeComplejidad>=20)
         {
           return 20;
         }
-        else if(tipoComplejidadCodigo=="bueno")
-        {
-          return 16;
-        }
-        else if(tipoComplejidadCodigo=="regular")
-        {
-           return 12;
-        }
-        else // es decir que es deficiente
-           {
-             return 8;
-          }
     }
     
     calcularPromedioPuntajeComplejidad(vectorComplejidad)
@@ -233,7 +221,7 @@ export class Puntajes {
     calcularPuntajeTotalComplejidadCodigo()
     {
       const promedioPuntajeComplejidad= this.calcularPromedioPuntajeComplejidad(this.complejidadCommits);
-
+      return this.obtenerPuntajeComplejidad(promedioPuntajeComplejidad);
     }
     DevolverRecomendacionPorCommit(puntajeCommit) {
         let recomendacion = "recomendacion"
