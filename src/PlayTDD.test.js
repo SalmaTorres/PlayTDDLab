@@ -205,4 +205,7 @@ it("En caso de haberse elegido la frecuencia de commit como bueno, es decir al m
 it("En caso de haberse elegido la frecuencia de commit como regular que quiere decir frecuencia de commits poco regulares", () => {
   expect(puntajes.obtenerPuntajeFrecuenciaCommits("regular")).toEqual(12);
 });
+it("En caso de haberse elegido la frecuencia de commit como deficiente que quiere decir frecuencia de commits es muy irregular", () => {
+  expect(puntajes.obtenerPuntajeFrecuenciaCommits("deficiente")).toEqual(8);
+});
 });

@@ -144,6 +144,10 @@ export class Puntajes {
           {
             return 12;
           }
+          else if(tipoDeFrecuenciaDelCommit=='deficiente')
+            {
+              return 8;
+            }
     }
     DevolverRecomendacionPorCommit(puntajeCommit) {
         let recomendacion = "recomendacion"
