@@ -32,7 +32,7 @@ export class Puntajes {
       this.commitsConPruebas--;
     }
 
-    this.puntajeTotal -= this.puntajesPruebas[index] + this.puntajesLineas[index] + this.puntajesCobertura[index];
+    this.puntajeTotal -= this.puntajesPruebas[index] + this.puntajesLineas[index] + this.puntajesCobertura[index]; 
     this.puntajesPruebas.splice(index, 1);
     this.puntajesLineas.splice(index, 1);
     this.puntajesCobertura.splice(index, 1);
@@ -136,6 +136,10 @@ export class Puntajes {
         {
           return 20;
         }
+        else if(tipoDeFrecuenciaDelCommit=="bueno")
+          {
+            return 16;
+          }
     }
     DevolverRecomendacionPorCommit(puntajeCommit) {
         let recomendacion = "recomendacion"

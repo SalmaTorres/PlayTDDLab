@@ -199,5 +199,7 @@ it("Debería devolver el mensaje de recomendacion final si tuvo menos de 50% de 
 it("En caso de haberse elegido la frecuencia de commit como Excelente se pone un puntaje de 20", () => {
   expect(puntajes.obtenerPuntajeFrecuenciaCommits("excelente")).toEqual(20);
 });
-
+it("En caso de haberse elegido la frecuencia de commit como bueno, es decir al menos 3 dias de diferencia, se pone un puntaje de 16", () => {
+  expect(puntajes.obtenerPuntajeFrecuenciaCommits("bueno")).toEqual(16);
+});
 });
