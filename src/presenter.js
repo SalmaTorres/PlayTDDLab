@@ -11,6 +11,41 @@ const divContenedorMetricas = document.querySelector("#contenedorDeMetricas");
 const botonVolverAProyectos = document.querySelector("#botonVolverAProyectos");
 const listaDeMetricas = document.getElementById("listaDeMetricas");
 
+
+// Leer y Procesar Archivo
+
+const inputArchivoMetricas = document.getElementById("archivoMetricas");
+const botonSubirArchivo = document.getElementById("botonSubirArchivoMetricas");
+
+function procesarArchivoMetricas(event) {
+  const archivo = inputArchivoMetricas.files[0];
+  if (archivo) {
+    const lector = new FileReader();
+    lector.onload = function(e) {
+      const contenido = e.target.result;
+      const lineas = contenido.split("\n");
+      lineas.forEach(linea => {
+        if (linea.trim()) {
+          const [nro_commit, fecha_commit, cant_pruebas, cant_lineas, porc_cobertura, comp_codigo] = linea.split(",").map(item => item.trim());
+          agregarMetricaDesdeArchivo(nro_commit, fecha_commit, parseInt(cant_pruebas), parseInt(cant_lineas), parseInt(porc_cobertura), comp_codigo);
+        }
+      });
+      actualizarTabla();
+    };
+    lector.readAsText(archivo);
+  }
+}
+
+function agregarMetricaDesdeArchivo(nro_commit, fecha_commit, cant_pruebas, cant_lineas, porc_cobertura, comp_codigo) {
+  proyectoActual.AnadirMetricas(nro_commit, cant_pruebas, cant_lineas, porc_cobertura, fecha_commit, comp_codigo);
+  puntajes.agregarPuntaje(cant_pruebas, cant_lineas, porc_cobertura, fecha_commit, comp_codigo);
+}
+
+botonSubirArchivo.addEventListener("click", procesarArchivoMetricas);
+
+//Fin de Leer y Procesar Archivo
+
+
 let repositorioDeProyectos = new ProyectoRepositorio();
 let proyectoActual;
 let puntajes = new Puntajes();
