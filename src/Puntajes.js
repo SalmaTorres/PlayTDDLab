@@ -181,6 +181,10 @@ export class Puntajes {
           {
             return 16;
           }
+          else if(promedioDias>3 && promedioDias<=4)
+            {
+              return 12;
+            } 
     }
     obtenerPuntajeComplejidad(tipoComplejidadCodigo)
     {

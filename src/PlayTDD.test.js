@@ -219,4 +219,11 @@ it("si mi cantidad de dias promedio entre commits es menor que 2 recibe un punta
 it("si mi cantidad de dias promedio entre commits es mayor a 2 y menor o igual a 3 recibe un puntaje de 16", () => {
   expect(puntajes.obtenerPuntajeFrecuenciaCommits(3)).toEqual(16);
 });
+it("si mi cantidad de dias promedio entre commits es mayor a 2 y menor o igual a 3 recibe un puntaje de 16", () => {
+  expect(puntajes.obtenerPuntajeFrecuenciaCommits(3)).toEqual(16);
+});
+it("si mi cantidad de dias promedio entre commits es mayor a 3 y menor o igual a 4 recibe un puntaje de 12", () => {
+  expect(puntajes.obtenerPuntajeFrecuenciaCommits(4)).toEqual(12);
+});
+
 });
