@@ -226,4 +226,7 @@ it("si el promedio de los puntajes esta entre 16 y 20 se le asigna 16 como punta
 it("si el promedio de los puntajes esta entre 12 y 16 se le asigna 12 como puntaje ", () => {
   expect(puntajes.obtenerPuntajeComplejidad(14)).toEqual(12);
 });
+it("si el promedio de los puntajes es menor que 12 se le asigna 8 como puntaje ", () => {
+  expect(puntajes.obtenerPuntajeComplejidad(5)).toEqual(8);
+});
 });

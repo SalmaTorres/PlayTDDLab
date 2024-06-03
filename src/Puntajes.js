@@ -205,6 +205,10 @@ export class Puntajes {
             {
               return 12;
             }
+            else if(promedioPuntajeComplejidad<12)
+              {
+                return 8;
+              }
     }
     
     calcularPromedioPuntajeComplejidad(vectorComplejidad)
