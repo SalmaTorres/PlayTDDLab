@@ -3,22 +3,23 @@ export class Puntajes {
     this.puntajesPruebas = [];
     this.puntajesLineas = [];
     this.puntajesCobertura = [];
+    this.puntajesFrecuenciaCommits=[];
     this.puntajeTotal = 0;
     this.commitsConPruebas = 0;
     this.totalCommits = 0;
   }
 
-  agregarPuntaje(vPruebas, vLineas, vCobertura) {
+  agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha) {
     this.totalCommits++;
 
     const puntajePruebas = this.obtenerPuntajePruebas(vPruebas);
     const puntajeLineas = this.obtenerPuntajeLineas(vLineas);
     const puntajeCobertura = this.obtenerPuntajeCobertura(vCobertura);
-
+    const puntajeFrecuenciaCommits=this.obtenerPuntajeFrecuenciaCommits(vFecha);
     this.puntajesPruebas.push(puntajePruebas);
     this.puntajesLineas.push(puntajeLineas);
     this.puntajesCobertura.push(puntajeCobertura);
-
+    this.puntajesFrecuenciaCommits.push(puntajeFrecuenciaCommits);
     if (vPruebas >= 1) {
       this.commitsConPruebas++;
     }
@@ -129,7 +130,13 @@ export class Puntajes {
     }
    
 
-    
+    obtenerPuntajeFrecuenciaCommits(tipoDeFrecuenciaDelCommit)
+    {
+      if(tipoDeFrecuenciaDelCommit=="excelente")
+        {
+          return 20;
+        }
+    }
     DevolverRecomendacionPorCommit(puntajeCommit) {
         let recomendacion = "recomendacion"
   
