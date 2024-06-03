@@ -137,8 +137,12 @@ export class Puntajes {
           return 20;
         }
         else if(tipoDeFrecuenciaDelCommit=="bueno")
+        {
+          return 16;
+        }
+        else if(tipoDeFrecuenciaDelCommit=='regular')
           {
-            return 16;
+            return 12;
           }
     }
     DevolverRecomendacionPorCommit(puntajeCommit) {

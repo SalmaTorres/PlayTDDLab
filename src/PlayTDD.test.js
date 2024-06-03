@@ -202,4 +202,7 @@ it("En caso de haberse elegido la frecuencia de commit como Excelente se pone un
 it("En caso de haberse elegido la frecuencia de commit como bueno, es decir al menos 3 dias de diferencia, se pone un puntaje de 16", () => {
   expect(puntajes.obtenerPuntajeFrecuenciaCommits("bueno")).toEqual(16);
 });
+it("En caso de haberse elegido la frecuencia de commit como regular que quiere decir frecuencia de commits poco regulares", () => {
+  expect(puntajes.obtenerPuntajeFrecuenciaCommits("regular")).toEqual(12);
+});
 });
