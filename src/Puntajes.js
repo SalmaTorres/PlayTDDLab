@@ -185,6 +185,10 @@ export class Puntajes {
             {
               return 12;
             } 
+            else
+            {
+              return 8;
+            }
     }
     obtenerPuntajeComplejidad(tipoComplejidadCodigo)
     {
