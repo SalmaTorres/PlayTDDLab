@@ -10,6 +10,7 @@ export class Puntajes {
     this.totalLineas = [];
     this.indiceLineas = 0;
     this.totalFechas=[];
+    this.tiposComplejidad=[];
   }
 
   agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha) {
@@ -208,6 +209,30 @@ export class Puntajes {
            {
              return 8;
           }
+    }
+    
+    obtenerPromedioPuntajeComplejidad(vectorComplejidad)
+    {
+      const valores = {
+        "excelente": 20,
+        "regular": 12,
+        "deficiente": 8,
+        "buena": 16
+      };
+      let suma = 0;
+      vectorComplejidad.forEach(item => {
+      if (valores.hasOwnProperty(item)) {
+      suma += valores[item];
+       } else {
+      throw new Error(`Valor no reconocido: ${item}`);
+      }
+      });
+    const promedio = suma / vectorComplejidad.length;
+    return promedio 
+  }
+    calcularPuntajeComplejidadCodigo()
+    {
+      const promedioPuntajeComplejidad=this.obtenerPromedioPuntajeComplejidad(this.tiposComplejidad);
     }
     DevolverRecomendacionPorCommit(puntajeCommit) {
         let recomendacion = "recomendacion"
