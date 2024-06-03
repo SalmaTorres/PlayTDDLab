@@ -9,6 +9,7 @@ export class Puntajes {
     this.totalCommits = 0;
     this.totalLineas = [];
     this.indiceLineas = 0;
+    this.totalFechas=[];
   }
 
   agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha) {
@@ -112,6 +113,39 @@ export class Puntajes {
     const promedioPuntajeLineas = this.obtenerPromedioPuntajes(this.totalLineas);
     return this.obtenerPuntajeLineas(promedioPuntajeLineas);
   }
+
+
+  calcularDiferenciaEnDias(fechaHora1, fechaHora2) {
+    const [fecha1, hora1] = fechaHora1.split("-");
+    const [fecha2, hora2] = fechaHora2.split("-");
+    const fechaHoraInicial = new Date(fecha1.split("/").reverse().join("-") + "T" + hora1);
+    const fechaHoraFinal = new Date(fecha2.split("/").reverse().join("-") + "T" + hora2);
+    const unDia = 24 * 60 * 60 * 1000;
+    if (isNaN(fechaHoraInicial.getTime()) || isNaN(fechaHoraFinal.getTime())) {
+      throw new Error("Fecha no válida");
+    }
+    const tiempoInicial = fechaHoraInicial.getTime();
+    const tiempoFinal = fechaHoraFinal.getTime();
+    const diferenciaEnMilisegundos = tiempoFinal - tiempoInicial;
+    const diferenciaEnDias = diferenciaEnMilisegundos / unDia;
+    return Math.floor(diferenciaEnDias);
+  }
+  
+  obtenerSumaDiferenciasEnDias(vectorFechas) {
+    let sumaDias = 0;
+    for (let i = 0; i < vectorFechas.length - 1; i++) {
+      let diferencia = this.calcularDiferenciaEnDias(vectorFechas[i], vectorFechas[i + 1]);
+      sumaDias += diferencia;
+    }
+    return sumaDias;
+  }
+   calcularPromedioFrecuenciaCommits()
+   {
+     const promedioPuntajeFrecuencia=this.obtenerSumaDiferenciasEnDias(this.totalFechas);
+   }
+
+
+
     obtenerPuntajeCobertura(porcentajeCobertura) {
       if (porcentajeCobertura > 90) {
         return 20;

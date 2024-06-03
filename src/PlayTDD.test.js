@@ -221,5 +221,9 @@ it("si la complejidad del codigo es regular, es decir la complejidad del codigo 
 it("si la complejidad del codigo es deficiente, es decir la complejidad del codigo es muy alta deberia tener una puntuacion de 8", () => {
   expect(puntajes.obtenerPuntajeComplejidad("deficiente")).toEqual(8);
 });
+it("dado un vector de fechas devuelve la suma de la diferencia de días entre commits", () => {
+  expect(puntajes.obtenerSumaDiferenciasEnDias(["12/04/2024-08:24", "13/04/2024-09:45", "14/04/2024-09:45", "15/04/2024-09:45"])).toEqual(3);
+});
+
 
 });
