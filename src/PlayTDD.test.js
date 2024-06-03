@@ -230,6 +230,8 @@ it("si mi cantidad de dias promedio entre commits es mayor a 4 recibe un puntaje
 });
 
 it("dada un array de fechas deberia devolver el promedio", () => {
-  expect(puntajes.obtenerPromedioPuntajeComplejidad(["excelente", "regular", "deficiente", "buena"])).toEqual(14);
+  expect(puntajes.calcularPromedioPuntajeComplejidad(["excelente", "regular", "deficiente", "buena"])).toEqual(14);
 });
+
+
 });

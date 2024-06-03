@@ -10,7 +10,7 @@ export class Puntajes {
     this.totalLineas = [];
     this.indiceLineas = 0;
     this.totalFechas=[];
-    this.tiposComplejidad=[];
+    this.complejidadCommits=[];
   }
 
   agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha) {
@@ -211,7 +211,7 @@ export class Puntajes {
           }
     }
     
-    obtenerPromedioPuntajeComplejidad(vectorComplejidad)
+    calcularPromedioPuntajeComplejidad(vectorComplejidad)
     {
       const valores = {
         "excelente": 20,
@@ -230,9 +230,10 @@ export class Puntajes {
     const promedio = suma / vectorComplejidad.length;
     return promedio 
   }
-    calcularPuntajeComplejidadCodigo()
+    calcularPuntajeTotalComplejidadCodigo()
     {
-      const promedioPuntajeComplejidad=this.obtenerPromedioPuntajeComplejidad(this.tiposComplejidad);
+      const promedioPuntajeComplejidad= this.calcularPromedioPuntajeComplejidad(this.complejidadCommits);
+
     }
     DevolverRecomendacionPorCommit(puntajeCommit) {
         let recomendacion = "recomendacion"
