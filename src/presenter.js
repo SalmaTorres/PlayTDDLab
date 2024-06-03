@@ -20,15 +20,15 @@ function agregarMetrica() {
   const vPruebas = parseInt(document.getElementById("cant_pruebas").value);
   const vLineas = parseInt(document.getElementById("cant_lineas").value);
   const vCobertura = parseInt(document.getElementById("porc_cobertura").value);
-
-  proyectoActual.AnadirMetricas(vCommit, vPruebas, vLineas, vCobertura);
-  puntajes.agregarPuntaje(vPruebas, vLineas, vCobertura);
+  const vFecha= document.getElementById("fecha_commit").value;
+  proyectoActual.AnadirMetricas(vCommit, vPruebas, vLineas, vCobertura,vFecha);
+  puntajes.agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha);
 
   document.getElementById("nro_commit").value = "";
   document.getElementById("cant_pruebas").value = "";
   document.getElementById("cant_lineas").value = "";
   document.getElementById("porc_cobertura").value = "";
-  
+  document.getElementById("fecha_commit").value="";
   actualizarTabla();
 }
 
