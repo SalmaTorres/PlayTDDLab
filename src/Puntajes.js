@@ -142,6 +142,8 @@ export class Puntajes {
    calcularPromedioFrecuenciaCommits()
    {
      const promedioPuntajeFrecuencia=this.obtenerSumaDiferenciasEnDias(this.totalFechas);
+     const promedioDias=promedioPuntajeFrecuencia/this.totalFechas.length-1;
+     return this.obtenerPuntajeFrecuenciaCommits(promedioDias);
    }
 
 
@@ -169,24 +171,13 @@ export class Puntajes {
     }
    
 
-    obtenerPuntajeFrecuenciaCommits(tipoDeFrecuenciaDelCommit)
+    obtenerPuntajeFrecuenciaCommits(promedioDias)
     {
-      if(tipoDeFrecuenciaDelCommit=="excelente")
+      if(promedioDias<=2)
         {
           return 20;
         }
-        else if(tipoDeFrecuenciaDelCommit=="bueno")
-        {
-          return 16;
-        }
-        else if(tipoDeFrecuenciaDelCommit=='regular')
-          {
-            return 12;
-          }
-          else if(tipoDeFrecuenciaDelCommit=='deficiente')
-            {
-              return 8;
-            }
+        
     }
     obtenerPuntajeComplejidad(tipoComplejidadCodigo)
     {

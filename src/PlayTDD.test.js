@@ -196,18 +196,7 @@ it("Debería devolver el mensaje de recomendacion final si tuvo al menos un 50% 
 it("Debería devolver el mensaje de recomendacion final si tuvo menos de 50% de eficacia de TDD en todo el proyecto", () => {
   expect(puntajes.DevolverRecomendacionFinal(40,4)).toEqual("No aplicaste TDD de manera adecuada, hay mucho espacio para mejorar, puede que las pruebas no esten en verde, que escribas lineas de codigo inecesarias y muy genericas desde el principio y tengas muy bajo porcentaje de cobertura, necesitas practica");
 });
-it("En caso de haberse elegido la frecuencia de commit como Excelente se pone un puntaje de 20", () => {
-  expect(puntajes.obtenerPuntajeFrecuenciaCommits("excelente")).toEqual(20);
-});
-it("En caso de haberse elegido la frecuencia de commit como bueno, es decir al menos 3 dias de diferencia, se pone un puntaje de 16", () => {
-  expect(puntajes.obtenerPuntajeFrecuenciaCommits("bueno")).toEqual(16);
-});
-it("En caso de haberse elegido la frecuencia de commit como regular que quiere decir frecuencia de commits poco regulares", () => {
-  expect(puntajes.obtenerPuntajeFrecuenciaCommits("regular")).toEqual(12);
-});
-it("En caso de haberse elegido la frecuencia de commit como deficiente que quiere decir frecuencia de commits es muy irregular", () => {
-  expect(puntajes.obtenerPuntajeFrecuenciaCommits("deficiente")).toEqual(8);
-});
+
 it("si la complejidad del codigo es excelente, es decir es con baja complejidad en cambios, deberia tener una puntuacion de 20", () => {
   expect(puntajes.obtenerPuntajeComplejidad("excelente")).toEqual(20);
 });
@@ -224,6 +213,8 @@ it("si la complejidad del codigo es deficiente, es decir la complejidad del codi
 it("dado un vector de fechas devuelve la suma de la diferencia de días entre commits", () => {
   expect(puntajes.obtenerSumaDiferenciasEnDias(["12/04/2024-08:24", "13/04/2024-09:45", "14/04/2024-09:45", "15/04/2024-09:45"])).toEqual(3);
 });
-
+it("si mi cantidad de dias promedio entre commits es menor que 2 recibe un puntaje de 20", () => {
+  expect(puntajes.obtenerPuntajeFrecuenciaCommits(2)).toEqual(20);
+});
 
 });
