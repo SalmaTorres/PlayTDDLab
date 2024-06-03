@@ -127,7 +127,9 @@ export class Puntajes {
     obtenerPuntajePorCommit(puntajePruebas, puntajeLineas, puntajeCobertura) {
       return puntajePruebas + puntajeLineas + puntajeCobertura;
     }
-  
+   
+
+    
     DevolverRecomendacionPorCommit(puntajeCommit) {
         let recomendacion = "recomendacion"
   

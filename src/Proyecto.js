@@ -22,9 +22,9 @@ export class Proyecto {
     return this.metricas;
   }
 
-  AnadirMetricas(nro_commit, cant_pruebas, cant_lineas, porc_cobertura) {
+  AnadirMetricas(nro_commit, cant_pruebas, cant_lineas, porc_cobertura, fecha_commit) {
     this.cantidadCommits++;
-    return this.metricas.push([nro_commit, cant_pruebas, cant_lineas, porc_cobertura]);
+    return this.metricas.push([nro_commit, cant_pruebas, cant_lineas, porc_cobertura,fecha_commit]);
     //return this.metricas;
   }
   

@@ -64,7 +64,7 @@ function construirTablaMetricas() {
     tablaMetricas.id = "tablaMetricas";
     const header = tablaMetricas.createTHead();
     const row = header.insertRow();
-    const headers = ["Número de Commit", "Cantidad de Pruebas", "Cantidad de Líneas", "Porcentaje de Cobertura", "Puntaje por Commit", "Recomendación por Commit", "Acciones"];
+    const headers = ["Número de Commit", "Cantidad de Pruebas", "Cantidad de Líneas", "Porcentaje de Cobertura", "Frecuencia del commit","Puntaje por Commit", "Recomendación por Commit", "Acciones"];
     headers.forEach(headerText => {
       const th = document.createElement("th");
       th.textContent = headerText;
