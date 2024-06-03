@@ -208,4 +208,7 @@ it("En caso de haberse elegido la frecuencia de commit como regular que quiere d
 it("En caso de haberse elegido la frecuencia de commit como deficiente que quiere decir frecuencia de commits es muy irregular", () => {
   expect(puntajes.obtenerPuntajeFrecuenciaCommits("deficiente")).toEqual(8);
 });
+it("si la complejidad del codigo es excelente, es decir es con baja complejidad en cambios, deberia tener una puntuacion de 20", () => {
+  expect(puntajes.obtenerPuntajeComplejidad("excelente")).toEqual(20);
+});
 });

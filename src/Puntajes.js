@@ -149,6 +149,13 @@ export class Puntajes {
               return 8;
             }
     }
+    obtenerPuntajeComplejidad(tipoComplejidadCodigo)
+    {
+      if(tipoComplejidadCodigo=="excelente")
+        {
+          return 20;
+        }
+    }
     DevolverRecomendacionPorCommit(puntajeCommit) {
         let recomendacion = "recomendacion"
   
