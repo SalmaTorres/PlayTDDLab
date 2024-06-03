@@ -78,7 +78,7 @@ it("Debería eliminar un puntaje de Prueba correctamente", () => {
 it("Debería obtener el puntaje total correctamente", () => {
   puntajes.agregarPuntaje(1, 10, 80);
   puntajes.agregarPuntaje(1, 20, 70);
-  expect(puntajes.obtenerPuntajeTotal()).toEqual(52);
+  expect(puntajes.obtenerPuntajeTotal()).toEqual(50);
 });
 
 it("Debería obtener el puntaje total correctamente", () => {
@@ -87,16 +87,16 @@ it("Debería obtener el puntaje total correctamente", () => {
   puntajes.agregarPuntaje(1, 20, 70);
   puntajes.agregarPuntaje(1, 20, 70);
   puntajes.agregarPuntaje(0, 20, 70);
-  expect(puntajes.obtenerPuntajeTotal()).toEqual(45.599999999999994);
+  expect(puntajes.obtenerPuntajeTotal()).toEqual(44.8);
 });
 
-it("Debería obtener el puntaje total correctamente", () => {
+it("Debería obtener el puntaje total correctamente con un total de 90 lineas", () => {
   puntajes.agregarPuntaje(1, 10, 80);
   puntajes.agregarPuntaje(1, 20, 70);
   puntajes.agregarPuntaje(1, 20, 70);
   puntajes.agregarPuntaje(0, 20, 70);
   puntajes.agregarPuntaje(0, 20, 70);
-  expect(puntajes.obtenerPuntajeTotal()).toEqual(41.6);
+  expect(puntajes.obtenerPuntajeTotal()).toEqual(40.8);
 });
 
 it("Debería obtener el puntaje de un commit correctamente", () => {
@@ -217,7 +217,9 @@ it("si la complejidad del codigo es buena, es decir la complejidad del codigo es
 it("si la complejidad del codigo es regular, es decir la complejidad del codigo es alta, deberia tener una puntuacion de 12", () => {
   expect(puntajes.obtenerPuntajeComplejidad("regular")).toEqual(12);
 });
+
 it("si la complejidad del codigo es deficiente, es decir la complejidad del codigo es muy alta deberia tener una puntuacion de 8", () => {
   expect(puntajes.obtenerPuntajeComplejidad("deficiente")).toEqual(8);
 });
+
 });

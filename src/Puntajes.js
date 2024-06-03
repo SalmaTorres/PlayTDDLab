@@ -7,6 +7,8 @@ export class Puntajes {
     this.puntajeTotal = 0;
     this.commitsConPruebas = 0;
     this.totalCommits = 0;
+    this.totalLineas = [];
+    this.indiceLineas = 0;
   }
 
   agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha) {
@@ -65,8 +67,9 @@ export class Puntajes {
     for (let i = 0; i < vectorPuntajes.length; i++) {
       sumaPuntajes += vectorPuntajes[i];
     }
+    console.log("Suma lineas: " + sumaPuntajes)
     let promedioPuntaje=0;
-    promedioPuntaje=sumaPuntajes/vectorPuntajes.length;
+    promedioPuntaje=sumaPuntajes/this.totalCommits;
     return promedioPuntaje;
   }
 
@@ -92,6 +95,8 @@ export class Puntajes {
   }
   
   obtenerPuntajeLineas(cantidadLineasModificadas) {
+    this.totalLineas[this.indiceLineas] = cantidadLineasModificadas;
+    this.indiceLineas++;
     if (cantidadLineasModificadas < 20) {
       return 20;
      }else if (cantidadLineasModificadas < 40) {
@@ -104,8 +109,8 @@ export class Puntajes {
    }
 
    calcularPuntajeTotalLineas() {
-    const promedioPuntajeLineas = this.obtenerPromedioPuntajes(this.puntajesLineas);
-    return promedioPuntajeLineas;
+    const promedioPuntajeLineas = this.obtenerPromedioPuntajes(this.totalLineas);
+    return this.obtenerPuntajeLineas(promedioPuntajeLineas);
   }
     obtenerPuntajeCobertura(porcentajeCobertura) {
       if (porcentajeCobertura > 90) {
@@ -163,7 +168,7 @@ export class Puntajes {
         {
            return 12;
         }
-        else if(tipoComplejidadCodigo=="deficiente")
+        else // es decir que es deficiente
            {
              return 8;
           }
