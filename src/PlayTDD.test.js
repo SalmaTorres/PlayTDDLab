@@ -214,4 +214,7 @@ it("si la complejidad del codigo es excelente, es decir es con baja complejidad 
 it("si la complejidad del codigo es buena, es decir la complejidad del codigo es moderada, deberia tener una puntuacion de 16", () => {
   expect(puntajes.obtenerPuntajeComplejidad("bueno")).toEqual(16);
 });
+it("si la complejidad del codigo es regular, es decir la complejidad del codigo es alta, deberia tener una puntuacion de 12", () => {
+  expect(puntajes.obtenerPuntajeComplejidad("regular")).toEqual(12);
+});
 });
