@@ -21,14 +21,16 @@ function agregarMetrica() {
   const vLineas = parseInt(document.getElementById("cant_lineas").value);
   const vCobertura = parseInt(document.getElementById("porc_cobertura").value);
   const vFecha= document.getElementById("fecha_commit").value;
-  proyectoActual.AnadirMetricas(vCommit, vPruebas, vLineas, vCobertura,vFecha);
-  puntajes.agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha);
+  const vComplejidad= document.getElementById("comp_codigo").value;
+  proyectoActual.AnadirMetricas(vCommit, vPruebas, vLineas, vCobertura,vFecha,vComplejidad);
+  puntajes.agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha,vComplejidad);
 
   document.getElementById("nro_commit").value = "";
   document.getElementById("cant_pruebas").value = "";
   document.getElementById("cant_lineas").value = "";
   document.getElementById("porc_cobertura").value = "";
   document.getElementById("fecha_commit").value="";
+  document.getElementById("comp_codigo").value="";
   actualizarTabla();
 }
 
@@ -64,7 +66,7 @@ function construirTablaMetricas() {
     tablaMetricas.id = "tablaMetricas";
     const header = tablaMetricas.createTHead();
     const row = header.insertRow();
-    const headers = ["Número de Commit", "Cantidad de Pruebas", "Cantidad de Líneas", "Porcentaje de Cobertura", "Frecuencia del commit","Puntaje por Commit", "Recomendación por Commit", "Acciones"];
+    const headers = ["Número de Commit", "Cantidad de Pruebas", "Cantidad de Líneas", "Porcentaje de Cobertura", "Frecuencia del commit","Complejidad del codigo","Puntaje por Commit", "Recomendación por Commit", "Acciones"];
     headers.forEach(headerText => {
       const th = document.createElement("th");
       th.textContent = headerText;
