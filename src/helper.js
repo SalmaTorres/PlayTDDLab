@@ -40,15 +40,15 @@ export function agregarFilasMetricas(tabla, metricas, obtenerPuntajeCommit, punt
   });
 }
 
-export function actualizarPuntajeTotal(puntajes) {
+export function actualizarPuntajeTotal(puntajes, nombreContenedor) {
   let puntajeContenedor = document.getElementById("puntajeContenedor");
   if (!puntajeContenedor) {
-    puntajeContenedor = document.createElement("div");
-    puntajeContenedor.id = "puntajeContenedor";
     document.body.appendChild(puntajeContenedor);
   } else {
     puntajeContenedor.innerHTML = "";
   }
+
+  nombreContenedor.appendChild(puntajeContenedor);
 
   const categorias = [
     { nombre: "Cantidad de Pruebas por Commit:  ", porcentaje: 20, puntaje: puntajes.calcularPuntajePruebasTotal() },

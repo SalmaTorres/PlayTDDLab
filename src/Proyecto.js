@@ -1,9 +1,12 @@
+import { Puntajes } from "./Puntajes.js";
+
 export class Proyecto {
   constructor(titulo, descripcion) {
     this.titulo = titulo;
     this.descripcion = descripcion;
     this.metricas = [];
     this.cantidadCommits = 0;
+    this.puntajes = new Puntajes();
   }
   
   DevolverCantidadCommits() {
@@ -32,6 +35,22 @@ export class Proyecto {
     this.cantidadCommits--;
     this.metricas.splice(index, 1);
     return this.metricas;
+  }
+
+  DevolverPuntajes() {
+    return this.puntajes;
+  }
+
+  AnadirPuntuacion(vPruebas, vLineas, vCobertura,vFecha,vComplejidad){
+    return this.puntajes.agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha,vComplejidad);
+  }
+
+  EliminarPuntaje(index) {
+    return this.puntajes.eliminarPuntaje(index);
+  }
+
+  ObtenerPuntajesCommit(index){
+    return this.puntajes.obtenerPuntajeCommit(index);
   }
 }
   
