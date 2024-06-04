@@ -11,7 +11,7 @@ const divContenedorMetricas = document.querySelector("#contenedorDeMetricas");
 const botonVolverAProyectos = document.querySelector("#botonVolverAProyectos");
 const listaDeMetricas = document.getElementById("listaDeMetricas");
 
-
+const puntajeContenedor = document.getElementById("puntajeContenedor"); 
 // Leer y Procesar Archivo
 
 const inputArchivoMetricas = document.getElementById("archivoMetricas");
@@ -215,12 +215,16 @@ function mostrarFormularioMetricas(indice) {
   document.getElementById("botonAgregarMetrica").addEventListener("click", agregarMetrica);
   mostrarTablaMetricas();
 
-  puntajes = new Puntajes();
+  if (!puntajeContenedor) {
+    puntajeContenedor.style.display = 'block';
+  }
+  puntajes = new Puntajes(proyectoActual.DevolverMetricas());
 }
 
 botonVolverAProyectos.addEventListener("click", () => {
   divContenedorMetricas.style.display = 'none';
   divContenedorProyectos.style.display = 'block';
+  puntajeContenedor.style.display = 'none';
 
   // Remover el event listener del botón agregar métrica para evitar múltiples anexiones
   document.getElementById("botonAgregarMetrica").removeEventListener("click", agregarMetrica);
