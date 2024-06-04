@@ -1,3 +1,5 @@
+//const divContenedorMetricas = document.querySelector("#contenedorDeMetricas");
+
 export function crearBoton(texto, manejador, indice) {
   const boton = document.createElement("button");
   boton.textContent = texto;
@@ -38,15 +40,10 @@ export function agregarFilasMetricas(tabla, metricas, obtenerPuntajeCommit, punt
   });
 }
 
-export function actualizarPuntajeTotal(puntajes) {
-  let puntajeContenedor = document.getElementById("puntajeContenedor");
-  if (!puntajeContenedor) {
+export function actualizarPuntajeTotal(puntajes, nombreContenedor) {
     puntajeContenedor = document.createElement("div");
     puntajeContenedor.id = "puntajeContenedor";
-    document.body.appendChild(puntajeContenedor);
-  } else {
-    puntajeContenedor.innerHTML = "";
-  }
+    nombreContenedor.body.appendChild(puntajeContenedor);
 
   const categorias = [
     { nombre: "Cantidad de Pruebas por Commit:  ", porcentaje: 20, puntaje: puntajes.calcularPuntajePruebasTotal() },

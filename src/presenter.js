@@ -146,7 +146,7 @@ function actualizarTabla() {
     borrarMetrica
   );
 
-  actualizarPuntajeTotal(puntajes);
+  actualizarPuntajeTotal(puntajes, divContenedorMetricas);
   actualizarRecomendacionFinal(puntajes, proyectoActual, divContenedorProyectos);
 }
 
