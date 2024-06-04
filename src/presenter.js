@@ -112,14 +112,13 @@ function construirTablaMetricas() {
   return tablaMetricas;
 }
 
-function mostrarTablaMetricas() { 
+function mostrarTablaMetricas() {
   let tablaMetricas = document.getElementById("tablaMetricas");
 
   if (!tablaMetricas) {
     tablaMetricas = construirTablaMetricas();
     listaDeMetricas.appendChild(tablaMetricas);
   } else {
-
     limpiarTabla(tablaMetricas);
   }
 
@@ -127,7 +126,11 @@ function mostrarTablaMetricas() {
     const filaMetrica = construirFilaMetrica(metrica, indice);
     tablaMetricas.appendChild(filaMetrica);
   });
+
+  // Asegurarse de que se actualicen los puntajes y recomendaciones al mostrar la tabla
+  actualizarTabla();
 }
+
 
 function actualizarTabla() {
   let tablaMetricas = document.getElementById("tablaMetricas");
@@ -146,7 +149,7 @@ function actualizarTabla() {
     borrarMetrica
   );
 
-  actualizarPuntajeTotal(puntajes, divContenedorMetricas);
+  actualizarPuntajeTotal(puntajes);
   actualizarRecomendacionFinal(puntajes, proyectoActual, divContenedorProyectos);
 }
 
@@ -218,4 +221,7 @@ function mostrarFormularioMetricas(indice) {
 botonVolverAProyectos.addEventListener("click", () => {
   divContenedorMetricas.style.display = 'none';
   divContenedorProyectos.style.display = 'block';
+
+  // Remover el event listener del botón agregar métrica para evitar múltiples anexiones
+  document.getElementById("botonAgregarMetrica").removeEventListener("click", agregarMetrica);
 });
