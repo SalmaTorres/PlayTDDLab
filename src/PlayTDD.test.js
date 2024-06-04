@@ -10,6 +10,24 @@ describe("PlayTDD", () => {
     puntajes = new Puntajes();
     proyectosRepositorio = new ProyectoRepositorio();
   });
+
+  it("Deberia devolver puntajes", () => {
+    expect(proyecto.DevolverPuntajes()).toEqual({"commitsConPruebas": 0, "complejidadCommits": [], "indiceLineas": 0, "puntajeTotal": 0, "puntajesCobertura": [], "puntajesComplejidadCommits": [], "puntajesFrecuenciaCommits": [], "puntajesLineas": [], "puntajesPruebas": [], "totalCommits": 0, "totalFechas": [], "totalLineas": []} );
+  });
+
+
+  it("Deberia devolver puntajes cagrengado uno", () => {
+    proyecto.AnadirPuntuacion(1,2,100,"01/05/2024-08:24","regular");
+    proyecto.EliminarPuntaje(0);
+    proyecto.ObtenerPuntajesCommit(0);
+  });
+
+  it("Debería calcular el promedio de puntaje de complejidad correctamente", () => {
+    let vectorComplejidad = ["regular"]
+    puntajes.calcularPromedioPuntajeComplejidad(vectorComplejidad);
+  });
+
+
   it("Deberia devolver el titulo", () => {
     expect(proyecto.DevolverTitulo()).toEqual("titulo");
   });
@@ -229,4 +247,9 @@ it('Debería retornar 16 cuando el porcentaje de commits con pruebas es entre 80
   puntajes.commitsConPruebas = 4;
   expect(puntajes.calcularPuntajePruebasTotal()).toEqual(16);
 });
+
+
+
 });
+
+
