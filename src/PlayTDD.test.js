@@ -215,7 +215,7 @@ it("si mi cantidad de dias promedio entre commits es mayor a 4 recibe un puntaje
   expect(puntajes.obtenerPuntajeFrecuenciaCommits(6)).toEqual(8);
 });
 it("dada un array de fechas deberia devolver el promedio", () => {
-  expect(puntajes.calcularPromedioPuntajeComplejidad(["excelente", "regular", "deficiente", "buena"])).toEqual(14);
+  expect(puntajes.calcularPromedioPuntajeComplejidad(["Excelente", "Regular", "Deficiente", "Bueno"])).toEqual(14);
 });
 it("si el promedio de los puntajes es mayor a 20 se le da el puntaje maximo que es 20", () => {
   expect(puntajes.obtenerPuntajeComplejidad(25)).toEqual(20);
@@ -228,5 +228,9 @@ it("si el promedio de los puntajes esta entre 12 y 16 se le asigna 12 como punta
 });
 it("si el promedio de los puntajes es menor que 12 se le asigna 8 como puntaje ", () => {
   expect(puntajes.obtenerPuntajeComplejidad(5)).toEqual(8);
+});
+
+it("dado un vector de fechas devuelve la suma de la diferencia de días entre commits", () => {
+  expect(puntajes.obtenerSumaDiferenciasEnDias(["12/04/2024-08:24", "12/06/2024-09:45"])).toEqual(61);
 });
 });

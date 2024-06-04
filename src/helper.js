@@ -53,7 +53,7 @@ export function actualizarPuntajeTotal(puntajes) {
     { nombre: "Líneas de Código por Commit", porcentaje: 20, puntaje: puntajes.calcularPuntajeTotalLineas() },
     { nombre: "Porcentaje de Cobertura de Pruebas por Commit", porcentaje: 20, puntaje: puntajes.calcularPuntajeTotalCobertura()},
     { nombre: "Frecuencia de Commits", porcentaje: 20, puntaje: puntajes.calcularPromedioFrecuenciaCommits() },
-    { nombre: "Complejidad de Código", porcentaje: 20, puntaje: puntajes.calcularPuntajeComplejidadCodigo() }
+    { nombre: "Complejidad de Código", porcentaje: 20, puntaje: puntajes.calcularPuntajeTotalComplejidadCodigo() }
   ];
   
   categorias.forEach(categoria => {

@@ -10,20 +10,23 @@ export class Puntajes {
     this.totalLineas = [];
     this.indiceLineas = 0;
     this.totalFechas=[];
+    this.puntajesComplejidadCommits=[];
     this.complejidadCommits=[];
   }
 
-  agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha) {
+  agregarPuntaje(vPruebas, vLineas, vCobertura,vFecha,vComplejidad) {
     this.totalCommits++;
 
     const puntajePruebas = this.obtenerPuntajePruebas(vPruebas);
     const puntajeLineas = this.obtenerPuntajeLineas(vLineas);
     const puntajeCobertura = this.obtenerPuntajeCobertura(vCobertura);
     const puntajeFrecuenciaCommits=this.obtenerPuntajeFrecuenciaCommits(vFecha);
+    const puntajeComplejidadCommits=this.obtenerPuntajeComplejidad(vComplejidad);
     this.puntajesPruebas.push(puntajePruebas);
     this.puntajesLineas.push(puntajeLineas);
     this.puntajesCobertura.push(puntajeCobertura);
     this.puntajesFrecuenciaCommits.push(puntajeFrecuenciaCommits);
+    this.puntajesComplejidadCommits.push(puntajeComplejidadCommits);
     if (vPruebas >= 1) {
       this.commitsConPruebas++;
     }
@@ -140,10 +143,29 @@ export class Puntajes {
     }
     return sumaDias;
   }
+  obtenerPuntajeFrecuenciaCommits(promedioDias)
+    {
+      if(promedioDias<=2)
+        {
+          return 20;
+        }
+        else if(promedioDias>2 && promedioDias<=3)
+          {
+            return 16;
+          }
+          else if(promedioDias>3 && promedioDias<=4)
+            {
+              return 12;
+            } 
+            else
+            {
+              return 8;
+            }
+    }
    calcularPromedioFrecuenciaCommits()
    {
      const promedioPuntajeFrecuencia=this.obtenerSumaDiferenciasEnDias(this.totalFechas);
-     const promedioDias=promedioPuntajeFrecuencia/this.totalFechas.length-1;
+     const promedioDias=promedioPuntajeFrecuencia/this.totalFechas-1;
      return this.obtenerPuntajeFrecuenciaCommits(promedioDias);
    }
 
@@ -172,25 +194,7 @@ export class Puntajes {
     }
    
 
-    obtenerPuntajeFrecuenciaCommits(promedioDias)
-    {
-      if(promedioDias<=2)
-        {
-          return 20;
-        }
-        else if(promedioDias>2 && promedioDias<=3)
-          {
-            return 16;
-          }
-          else if(promedioDias>3 && promedioDias<=4)
-            {
-              return 12;
-            } 
-            else
-            {
-              return 8;
-            }
-    }
+    
     obtenerPuntajeComplejidad(promedioPuntajeComplejidad)
     {
       if(promedioPuntajeComplejidad>=20)
@@ -205,7 +209,7 @@ export class Puntajes {
             {
               return 12;
             }
-            else if(promedioPuntajeComplejidad<12)
+            else 
               {
                 return 8;
               }
@@ -214,10 +218,10 @@ export class Puntajes {
     calcularPromedioPuntajeComplejidad(vectorComplejidad)
     {
       const valores = {
-        "excelente": 20,
-        "regular": 12,
-        "deficiente": 8,
-        "buena": 16
+        "Excelente": 20,
+        "Regular": 12,
+        "Deficiente": 8,
+        "Bueno": 16
       };
       let suma = 0;
       vectorComplejidad.forEach(item => {
