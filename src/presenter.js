@@ -48,7 +48,7 @@ function procesarArchivoMetricas(event) {
 function agregarMetricaDesdeArchivo(nro_commit, fecha_commit, cant_pruebas, cant_lineas, porc_cobertura, comp_codigo) {
   proyectoActual.AnadirMetricas(nro_commit, cant_pruebas, cant_lineas, porc_cobertura, fecha_commit, comp_codigo);
   proyectoActual.AnadirPuntuacion(cant_pruebas, cant_lineas, porc_cobertura, fecha_commit, comp_codigo);
-  puntajes.agregarPuntaje(cant_pruebas, cant_lineas, porc_cobertura, fecha_commit, comp_codigo);
+  //puntajes.agregarPuntaje(cant_pruebas, cant_lineas, porc_cobertura, fecha_commit, comp_codigo);
 }
 
 botonSubirArchivo.addEventListener("click", procesarArchivoMetricas);
@@ -223,7 +223,7 @@ function mostrarFormularioMetricas(indice) {
 
   listaDeMetricas.innerHTML = "";
   document.getElementById("botonAgregarMetrica").addEventListener("click", agregarMetrica);
-  puntajes = new Puntajes(proyectoActual.DevolverMetricas());
+  //puntajes = new Puntajes(proyectoActual.DevolverMetricas());
 
   mostrarTablaMetricas();
   
