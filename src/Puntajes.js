@@ -39,16 +39,18 @@ export class Puntajes {
       this.commitsConPruebas--;
     }
 
-    this.puntajeTotal -= this.puntajesPruebas[index] + this.puntajesLineas[index] + this.puntajesCobertura[index]; 
+    this.puntajeTotal -= this.puntajesPruebas[index] + this.puntajesLineas[index] + this.puntajesCobertura[index]+this.puntajesFrecuenciaCommits[index]+this.puntajesComplejidadCommits[index]; 
     this.puntajesPruebas.splice(index, 1);
     this.puntajesLineas.splice(index, 1);
     this.puntajesCobertura.splice(index, 1);
+    this.puntajesFrecuenciaCommits.splice(index, 1);
+    this.puntajesComplejidadCommits.splice(index, 1);
     this.totalCommits--;
     this.puntajeTotal = this.calcularPuntajeTotal();
   }
 
   obtenerPuntajeCommit(index) {
-    return this.puntajesPruebas[index] + this.puntajesLineas[index] + this.puntajesCobertura[index];
+    return this.puntajesPruebas[index] + this.puntajesLineas[index] + this.puntajesCobertura[index] +this.puntajesFrecuenciaCommits[index]+this.puntajesComplejidadCommits[index];
   }
 
   obtenerPuntajeTotal() {
@@ -63,6 +65,10 @@ export class Puntajes {
     total += this.calcularPuntajeTotalLineas();
 
     total += this.calcularPuntajeTotalCobertura();
+
+    total+=this.calcularPromedioFrecuenciaCommits();
+
+    total+=this.calcularPuntajeTotalComplejidadCodigo();
 
     return total;
   }
@@ -165,7 +171,7 @@ export class Puntajes {
    calcularPromedioFrecuenciaCommits()
    {
      const promedioPuntajeFrecuencia=this.obtenerSumaDiferenciasEnDias(this.totalFechas);
-     const promedioDias=promedioPuntajeFrecuencia/this.totalFechas-1;
+     const promedioDias=promedioPuntajeFrecuencia/this.totalCommits-1;
      return this.obtenerPuntajeFrecuenciaCommits(promedioDias);
    }
 
