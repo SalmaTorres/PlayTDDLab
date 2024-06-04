@@ -36,14 +36,18 @@ function procesarArchivoMetricas(event) {
           agregarMetricaDesdeArchivo(nro_commit, fecha_commit, parseInt(cant_pruebas), parseInt(cant_lineas), parseInt(porc_cobertura), comp_codigo);
         }
       });
+      // Después de agregar las métricas, actualiza la tabla y los puntajes
       actualizarTabla();
+      actualizarPuntajeTotal(puntajes, divContenedorMetricas);
     };
     lector.readAsText(archivo);
   }
 }
 
+
 function agregarMetricaDesdeArchivo(nro_commit, fecha_commit, cant_pruebas, cant_lineas, porc_cobertura, comp_codigo) {
   proyectoActual.AnadirMetricas(nro_commit, cant_pruebas, cant_lineas, porc_cobertura, fecha_commit, comp_codigo);
+  proyectoActual.AnadirPuntuacion(cant_pruebas, cant_lineas, porc_cobertura, fecha_commit, comp_codigo);
   puntajes.agregarPuntaje(cant_pruebas, cant_lineas, porc_cobertura, fecha_commit, comp_codigo);
 }
 
