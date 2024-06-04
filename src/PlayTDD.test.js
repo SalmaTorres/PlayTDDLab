@@ -79,34 +79,15 @@ it("Debería eliminar un puntaje de Prueba correctamente", () => {
   expect(puntajes.puntajesPruebas).toEqual([]);
 });
 
-// it("Debería obtener el puntaje total correctamente", () => {
-//   puntajes.agregarPuntaje(1, 10, 80);
-//   puntajes.agregarPuntaje(1, 20, 70);
-//   expect(puntajes.obtenerPuntajeTotal()).toEqual(50);
-// });
-
-// it("Debería obtener el puntaje total correctamente", () => {
-//   puntajes.agregarPuntaje(1, 10, 80);
-//   puntajes.agregarPuntaje(1, 20, 70);
-//   puntajes.agregarPuntaje(1, 20, 70);
-//   puntajes.agregarPuntaje(1, 20, 70);
-//   puntajes.agregarPuntaje(0, 20, 70);
-//   expect(puntajes.obtenerPuntajeTotal()).toEqual(44.8);
-// });
-
-// it("Debería obtener el puntaje total correctamente con un total de 90 lineas", () => {
-//   puntajes.agregarPuntaje(1, 10, 80);
-//   puntajes.agregarPuntaje(1, 20, 70);
-//   puntajes.agregarPuntaje(1, 20, 70);
-//   puntajes.agregarPuntaje(0, 20, 70);
-//   puntajes.agregarPuntaje(0, 20, 70);
-//   expect(puntajes.obtenerPuntajeTotal()).toEqual(40.8);
-// });
-
-// it("Debería obtener el puntaje de un commit correctamente", () => {
-//   puntajes.agregarPuntaje(0, 10, 80);
-//   expect(puntajes.obtenerPuntajeCommit(0)).toEqual(44);
-// });
+ it("Debería obtener el puntaje total correctamente", () => {
+   puntajes.agregarPuntaje(1, 10, 80,"12/04/2024-08:24", "Excelente");
+   puntajes.agregarPuntaje(1, 20, 70,"13/04/2024-08:24", "Excelente");
+   expect(puntajes.obtenerPuntajeTotal()).toEqual(78);
+ });
+ it("Debería obtener el puntaje de un commit correctamente", () => {
+   puntajes.agregarPuntaje(0, 10, 80,"12/04/2024-08:24","Excelente");
+  expect(puntajes.obtenerPuntajeCommit(0)).toEqual(60);
+ });
 
 
 it("Debería asignar un puntaje de 20 para una cantidad de 1 pruebas pasadas", () => {
@@ -236,5 +217,16 @@ it("si el promedio de los puntajes es menor que 12 se le asigna 8 como puntaje "
 
 it("dado un vector de fechas devuelve la suma de la diferencia de días entre commits", () => {
   expect(puntajes.obtenerSumaDiferenciasEnDias(["12/04/2024-08:24", "12/06/2024-09:45"])).toEqual(61);
+});
+
+it("dado un vector de fechas devuelve la suma de la diferencia de días entre commits", () => {
+  puntajes.totalCommits=5;
+  puntajes.commitsConPruebas = 3;
+  expect(puntajes.calcularPuntajePruebasTotal()).toEqual(12);
+});
+it('Debería retornar 16 cuando el porcentaje de commits con pruebas es entre 80% y 99%', () => {
+  puntajes.totalCommits = 5;
+  puntajes.commitsConPruebas = 4;
+  expect(puntajes.calcularPuntajePruebasTotal()).toEqual(16);
 });
 });

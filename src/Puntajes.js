@@ -131,9 +131,7 @@ export class Puntajes {
     const fechaHoraInicial = new Date(fecha1.split("/").reverse().join("-") + "T" + hora1);
     const fechaHoraFinal = new Date(fecha2.split("/").reverse().join("-") + "T" + hora2);
     const unDia = 24 * 60 * 60 * 1000;
-    if (isNaN(fechaHoraInicial.getTime()) || isNaN(fechaHoraFinal.getTime())) {
-      throw new Error("Fecha no válida");
-    }
+  
     const tiempoInicial = fechaHoraInicial.getTime();
     const tiempoFinal = fechaHoraFinal.getTime();
     const diferenciaEnMilisegundos = tiempoFinal - tiempoInicial;
@@ -233,9 +231,7 @@ export class Puntajes {
       vectorComplejidad.forEach(item => {
       if (valores.hasOwnProperty(item)) {
       suma += valores[item];
-       } else {
-      throw new Error(`Valor no reconocido: ${item}`);
-      }
+       }
       });
     const promedio = suma / vectorComplejidad.length;
     return promedio 
